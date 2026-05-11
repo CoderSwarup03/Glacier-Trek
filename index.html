@@ -815,15 +815,16 @@
       <div class="relative">
         <!-- arrow card -->
         <!-- Left Arrow -->
+        <!-- Left Arrow -->
         <button
-          class="scroll-left absolute left-2 md:left-0 top-1/2 -translate-y-1/2 z-20 bg-white/90 backdrop-blur-md shadow-lg rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center border border-slate-200 hover:bg-[#d5e880] transition"
+          class="scroll-left hidden lg:flex absolute left-2 md:left-0 top-1/2 -translate-y-1/2 z-20 bg-white/90 backdrop-blur-md shadow-lg rounded-full w-12 h-12 items-center justify-center border border-slate-200 hover:bg-[#d5e880] transition"
         >
           ❮
         </button>
 
         <!-- Right Arrow -->
         <button
-          class="scroll-right absolute right-2 md:right-0 top-1/2 -translate-y-1/2 z-20 bg-white/90 backdrop-blur-md shadow-lg rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center border border-slate-200 hover:bg-[#d5e880] transition"
+          class="scroll-right hidden lg:flex absolute right-2 md:right-0 top-1/2 -translate-y-1/2 z-20 bg-white/90 backdrop-blur-md shadow-lg rounded-full w-12 h-12 items-center justify-center border border-slate-200 hover:bg-[#d5e880] transition"
         >
           ❯
         </button>
@@ -2596,6 +2597,90 @@
 
             // show selected content
             document.getElementById(target).classList.remove("hidden");
+          });
+        });
+      });
+    </script>
+
+    <!-- arrow card script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const pricingSections = document.querySelectorAll(".pricing-content");
+
+        function updateArrows(section) {
+          const scrollBox = section.querySelector(".pricing-scroll");
+          const leftBtn = document.querySelector(".scroll-left");
+          const rightBtn = document.querySelector(".scroll-right");
+
+          if (!scrollBox) return;
+
+          const canScroll = scrollBox.scrollWidth > scrollBox.clientWidth + 10;
+
+          // hide both if no overflow
+          if (!canScroll) {
+            leftBtn.classList.add("hidden");
+            rightBtn.classList.add("hidden");
+            return;
+          }
+
+          // show right initially
+          leftBtn.classList.toggle("hidden", scrollBox.scrollLeft <= 10);
+
+          rightBtn.classList.toggle(
+            "hidden",
+            scrollBox.scrollLeft + scrollBox.clientWidth >=
+              scrollBox.scrollWidth - 10,
+          );
+        }
+
+        function initSlider(section) {
+          const scrollBox = section.querySelector(".pricing-scroll");
+          const leftBtn = document.querySelector(".scroll-left");
+          const rightBtn = document.querySelector(".scroll-right");
+
+          if (!scrollBox) return;
+
+          const card = scrollBox.querySelector("div");
+          const cardWidth = card.offsetWidth + 20;
+
+          leftBtn.onclick = () => {
+            scrollBox.scrollBy({
+              left: -cardWidth,
+              behavior: "smooth",
+            });
+          };
+
+          rightBtn.onclick = () => {
+            scrollBox.scrollBy({
+              left: cardWidth,
+              behavior: "smooth",
+            });
+          };
+
+          scrollBox.addEventListener("scroll", () => updateArrows(section));
+
+          window.addEventListener("resize", () => updateArrows(section));
+
+          updateArrows(section);
+        }
+
+        // init active tab only
+        pricingSections.forEach((section) => {
+          if (!section.classList.contains("hidden")) {
+            initSlider(section);
+          }
+        });
+
+        // if tabs change
+        const tabButtons = document.querySelectorAll("[data-tab]");
+        tabButtons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            setTimeout(() => {
+              const active = document.querySelector(
+                ".pricing-content:not(.hidden)",
+              );
+              initSlider(active);
+            }, 100);
           });
         });
       });
