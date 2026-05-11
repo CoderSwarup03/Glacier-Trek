@@ -196,11 +196,16 @@ async function loadPackageDetails(slug) {
 
     <!-- Links -->
     <div class="pt-3 border-t border-[#e7eddc] grid grid-cols-2 gap-2 text-sm font-semibold plus-jakarta-sans">
-      <a href="#" class="text-[#243146] hover:underline">Inclusions & Exclusions</a>
-      <a href="#" class="text-[#243146] hover:underline">Terms & Conditions</a>
-      <a href="#" class="text-[#243146] hover:underline">Refund Policy</a>
-      <a href="#" class="text-[#243146] hover:underline">Scholarships & Waivers</a>
-    </div>
+  <a href="#" class="text-[#243146] hover:underline">Inclusions & Exclusions</a>
+  <a href="#" class="text-[#243146] hover:underline">Terms & Conditions</a>
+  <a href="#" class="text-[#243146] hover:underline">Refund Policy</a>
+
+  <a href="javascript:void(0)"
+     onclick="openScholarshipModal()"
+     class="text-[#243146] hover:underline">
+     Scholarships & Waivers
+  </a>
+</div>
 
   </div>
 

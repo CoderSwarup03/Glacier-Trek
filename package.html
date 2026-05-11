@@ -2051,22 +2051,26 @@
       });
     </script>
 
-    <!-- packages modal -->
+    <!-- packages additioanl modal -->
     <div
       id="chargeModal"
-      class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50"
+      class="fixed inset-0 bg-black/50 hidden items-start md:items-center justify-center z-50 p-4 pt-8 md:pt-4"
     >
-      <div class="bg-white rounded-2xl p-6 w-[90%] max-w-md relative">
+      <div
+        class="bg-white rounded-2xl p-6 w-full max-w-md max-h-[90vh] relative overflow-y-auto"
+      >
         <button
           onclick="closeChargeModal()"
-          class="absolute top-3 right-4 text-2xl"
+          class="absolute top-3 right-4 text-2xl text-slate-700"
         >
           ×
         </button>
 
-        <h3 class="text-xl font-bold mb-4">Additional Charges</h3>
+        <h3 class="text-xl font-bold mb-4 pr-6 plus-jakarta-sans">
+          Additional Charges
+        </h3>
 
-        <div class="space-y-3 text-slate-700">
+        <div class="space-y-3 text-slate-700 plus-jakarta-sans">
           <p>₹500 Permit Fee</p>
           <p>₹1,000 Transport Fee</p>
           <p>₹800 Camping Charge</p>
@@ -2075,9 +2079,67 @@
       </div>
     </div>
 
-    <script>
-      // modal script
+    <!-- Weaver modal -->
+    <div
+      id="scholarshipModal"
+      class="fixed inset-0 bg-black/50 hidden items-start md:items-center justify-center z-50 p-4 pt-8 md:pt-4"
+    >
+      <div
+        class="bg-white w-full max-w-lg max-h-[90vh] rounded-2xl p-6 relative overflow-y-auto"
+      >
+        <!-- Close Button -->
+        <button
+          onclick="closeScholarshipModal()"
+          class="absolute top-3 right-4 text-2xl text-slate-700"
+        >
+          ×
+        </button>
 
+        <!-- Heading -->
+        <h2 class="text-xl font-bold mb-4 pr-6 plus-jakarta-sans">
+          Scholarships & Waivers
+        </h2>
+
+        <!-- Content -->
+        <div class="space-y-4 text-slate-700 plus-jakarta-sans leading-7">
+          <div>
+            <h3 class="font-semibold text-lg text-[#243146] mb-2">
+              Scholarships for Children
+            </h3>
+            <p>
+              At Glacier Trek, we strongly believe that children must trek.
+              Children aged <strong>14 and below</strong> qualify for a
+              <strong>30% trek fee scholarship</strong>. Check out this article.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-lg text-[#243146] mb-2">Waivers</h3>
+            <p>
+              For every <strong>ten adult trekkers</strong> (aged 15 and above)
+              in a group booking, we will waive off the trek fee for
+              <strong>one trekker</strong>. Glacier Trek will reimburse the said
+              trek fee after you complete your trek.
+            </p>
+          </div>
+
+          <p class="text-sm text-slate-500 italic">
+            (These benefits will be applicable only if our team is informed at
+            <a
+              href="mailto:experience@glaciertrek.com"
+              class="text-[#243146] underline"
+            >
+              experience@glaciertrek.com
+            </a>
+            after completion of your trek and within 30 days from your trek
+            date. Requests made beyond this period will not be eligible.)
+          </p>
+        </div>
+      </div>
+    </div>
+
+    // show more modal script
+    <script>
       function openChargeModal() {
         const modal = document.getElementById("chargeModal");
 
@@ -2104,6 +2166,35 @@
 
         if (e.target === modal) {
           closeChargeModal();
+        }
+      });
+    </script>
+
+    <!-- weaver modal script -->
+    <script>
+      function openScholarshipModal() {
+        const modal = document.getElementById("scholarshipModal");
+
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+
+        document.body.classList.add("overflow-hidden");
+      }
+
+      function closeScholarshipModal() {
+        const modal = document.getElementById("scholarshipModal");
+
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+
+        document.body.classList.remove("overflow-hidden");
+      }
+
+      document.addEventListener("click", function (e) {
+        const modal = document.getElementById("scholarshipModal");
+
+        if (e.target === modal) {
+          closeScholarshipModal();
         }
       });
     </script>
