@@ -98,6 +98,42 @@
     }
   </style>
   </style>
+ <style>
+  .gallery-img{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+  border-radius:24px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.gallery-img:hover{
+  transform:scale(1.03);
+}
+
+.gallery-tab{
+  background:#f1f5f9;
+  color:#243146;
+}
+
+.active-tab{
+  background:#243146;
+  color:#d5e880;
+}
+
+/* scroll bar hide */
+.scrollbar-hide::-webkit-scrollbar{
+  display:none;
+}
+
+.scrollbar-hide{
+  -ms-overflow-style:none;
+  scrollbar-width:none;
+}
+ </style>
+
+ 
 </head>
 
 <body>
@@ -457,6 +493,97 @@
       </div>
     </div>
   </section>
+
+  <!--  new gallary2 -->
+  <section class="py-14 bg-white">
+  <div class="max-w-[85%] mx-auto">
+
+    <div class="flex flex-col md:flex-row justify-between items-center mb-2">
+      <div class="items-center md:items-start flex flex-col gap-2">
+        <p class="text-center md:text-start text-slate-500 plus-jakarta-sans text-lg">
+          Capturing moments from the roof of the world
+        </p>
+        <h2 class="gloock-regular text-2xl lg:text-4xl text-slate-900">
+          Trek Photo Gallery
+        </h2>
+      </div>
+
+        <!-- tab buttton -->
+         <div class="w-full overflow-x-auto scrollbar-hide">
+  <div class="inline-flex gap-3 min-w-max py-2">
+
+    <button
+      id="summerBtn"
+      onclick="showGallery('summer')"
+      class="gallery-tab active-tab px-6 py-3 rounded-full whitespace-nowrap"
+    >
+      Summer
+    </button>
+
+    <button
+      id="winterBtn"
+      onclick="showGallery('winter')"
+      class="gallery-tab px-6 py-3 rounded-full whitespace-nowrap"
+    >
+      Winter
+    </button>
+
+    <button
+      id="springBtn"
+      onclick="showGallery('spring')"
+      class="gallery-tab px-6 py-3 rounded-full whitespace-nowrap"
+    >
+      Spring
+    </button>
+
+    <button
+      id="rainBtn"
+      onclick="showGallery('rain')"
+      class="gallery-tab px-6 py-3 rounded-full whitespace-nowrap"
+    >
+      Rain
+    </button>
+
+  </div>
+</div>
+    </div>
+
+    <div id="summerGallery" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+
+    <div id="winterGallery"
+      class="hidden grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+
+    <div class="text-center mt-8">
+      <button
+        id="galleryNext"
+        onclick="nextGalleryPage()"
+        class="hidden px-8 py-3 rounded-full bg-[#243146] text-[#d5e880] font-semibold"
+      >
+        Next Photos →
+      </button>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Lightbox gallary-->
+<div
+  id="lightbox"
+  class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50 p-4"
+>
+  <button onclick="closeLightbox()"
+    class="absolute top-6 right-8 text-white text-4xl">×</button>
+
+  <button onclick="prevImage()"
+    class="absolute left-6 text-white text-5xl">‹</button>
+
+  <img id="lightboxImage"
+    class="max-w-[90%] max-h-[85vh] rounded-2xl" />
+
+  <button onclick="nextImage()"
+    class="absolute right-6 text-white text-5xl">›</button>
+</div>
 
   <!-- Similar Treks Section -->
   <section class="py-6 md:py-10 bg-[#f8faf7] overflow-hidden">
@@ -1646,6 +1773,168 @@
         closeScholarshipModal();
       }
     });
+  </script>
+
+  <!-- for photo gallay script -->
+  <script>
+    const summerImages = [
+  "./images/blog1.webp",
+  "./images/blog1.webp",
+  "./images/blog1.webp",
+  "./images/blog1.webp",
+  "./images/blog1.webp",
+  "./images/blog1.webp",
+  "./images/blog1.webp",
+  "./images/blog1.webp",
+  "./images/blog1.webp",
+  "./images/blog1.webp",
+  "./images/blog1.webp",
+  "./images/blog1.webp",
+  "./images/blog1.webp",
+  "./images/blog1.webp"
+];
+
+const winterImages = [
+  "./images/blog1.webp",
+  "./images/blog1.webp",
+  "./images/blog1.webp",
+  "./images/blog1.webp"
+];
+
+let currentTab = "summer";
+let currentPage = 0;
+let currentIndex = 0;
+let currentImages = [];
+const perPage = 12;
+
+
+/* tab switch */
+function showGallery(type) {
+  currentTab = type;
+  currentPage = 0;
+
+  document
+    .getElementById("summerGallery")
+    .classList.toggle("hidden", type !== "summer");
+
+  document
+    .getElementById("winterGallery")
+    .classList.toggle("hidden", type !== "winter");
+
+  document
+    .getElementById("summerBtn")
+    .classList.toggle("active-tab", type === "summer");
+
+  document
+    .getElementById("winterBtn")
+    .classList.toggle("active-tab", type === "winter");
+
+  loadImages();
+}
+
+
+/* load gallery */
+function loadImages() {
+  const images =
+    currentTab === "summer" ? summerImages : winterImages;
+
+  const gallery =
+    currentTab === "summer"
+      ? document.getElementById("summerGallery")
+      : document.getElementById("winterGallery");
+
+  gallery.innerHTML = "";
+
+  const start = currentPage * perPage;
+  const end = start + perPage;
+
+  images.slice(start, end).forEach((img, index) => {
+    gallery.innerHTML += `
+      <img
+        src="${img}"
+        onclick="openLightbox(${start + index}, '${currentTab}')"
+        class="gallery-img"
+      />
+    `;
+  });
+
+  const nextBtn = document.getElementById("galleryNext");
+
+  if (images.length > end) {
+    nextBtn.classList.remove("hidden");
+  } else {
+    nextBtn.classList.add("hidden");
+  }
+}
+
+
+/* next page */
+function nextGalleryPage() {
+  currentPage++;
+  loadImages();
+}
+
+
+/* lightbox open */
+function openLightbox(index, type) {
+  currentImages =
+    type === "summer" ? summerImages : winterImages;
+
+  currentIndex = index;
+
+  document
+    .getElementById("lightbox")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("lightbox")
+    .classList.add("flex");
+
+  document.body.classList.add("overflow-hidden");
+
+  updateLightbox();
+}
+
+function updateLightbox() {
+  document.getElementById("lightboxImage").src =
+    currentImages[currentIndex];
+}
+
+
+/* next image */
+function nextImage() {
+  currentIndex =
+    (currentIndex + 1) % currentImages.length;
+  updateLightbox();
+}
+
+
+/* prev image */
+function prevImage() {
+  currentIndex =
+    (currentIndex - 1 + currentImages.length) %
+    currentImages.length;
+
+  updateLightbox();
+}
+
+
+/* close */
+function closeLightbox() {
+  document
+    .getElementById("lightbox")
+    .classList.add("hidden");
+
+  document
+    .getElementById("lightbox")
+    .classList.remove("flex");
+
+  document.body.classList.remove("overflow-hidden");
+}
+
+window.onload = function () {
+  showGallery("summer");
+};
   </script>
 </body>
 
