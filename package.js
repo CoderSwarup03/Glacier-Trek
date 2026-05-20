@@ -657,10 +657,11 @@ async function loadPackageDetails(slug) {
 
       //inclusion section
       inclusionsData.forEach((inclusion) => {
-        inclusionsContent.innerHTML += ` <div class="overflow-hidden border-b border-[#d5e880]">
+        inclusionsContent.innerHTML += ` 
+                  <div class="overflow-hidden border-b border-[#d5e880]">
                     <button type="button"
                         class="inclusions-btn flex w-full items-center justify-between px-3 md:px-6 py-2 text-left">
-                        <div>
+                        <div id="inclusionsContent">
                             <h4 class="text-[20px] md:text-[22px] font-[600] text-[#243146] plus-jakarta-sans">${inclusion.name}</h4>
                            
                         </div>
@@ -670,11 +671,10 @@ async function loadPackageDetails(slug) {
                         </svg>
                     </button>
                     <div class="accordion-content hidden px-3 md:px-6 py-3">
-    <div class="w-full">
-        <p class="flex items-start gap-3 plus-jakarta-sans text-slate-700 leading-7">
-           
-            <span>${inclusion.content.replace(/&nbsp;/g, " ")}</span>
-        </p>
+                  <div class="w-full">
+                  <p id="inclusionsContent" class=" flex items-start gap-3 plus-jakarta-sans text-slate-700 leading-7">
+                    <span>${inclusion.content.replace(/&nbsp;/g, " ")}</span>
+                  </p>
     </div>
 </div>
                 </div>`;

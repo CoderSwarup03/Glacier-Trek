@@ -54,18 +54,30 @@
       #overview li,
       #overview span,
       #overview a,
-      #overview div {
+      #overview div,
+      #itineraryContent p,
+      #itineraryContent li,
+      #itineraryContent span,
+      #itineraryContent a,
+      #itineraryContent div,
+      #inclusionsContent p,
+      #inclusionsContent li,
+      #inclusionsContent span,
+      #inclusionsContent a,
+      #inclusionsContent div {
         font-family: "Plus Jakarta Sans", sans-serif !important;
-        font-size: 16px !important; /* 1em */
+        font-size: 16px !important;
         font-weight: 400 !important;
         line-height: 1.8 !important;
         color: #475569 !important;
         margin-bottom: 16px !important;
       }
 
-      /* h1 = 32px */
+      /* h1 */
       #pagecontent h1,
-      #overview h1 {
+      #overview h1,
+      #itineraryContent h1,
+      #inclusionsContent h1 {
         font-family: "Gloock", serif !important;
         font-size: 36px !important;
         font-weight: 700 !important;
@@ -74,9 +86,11 @@
         margin: 20px 0 14px !important;
       }
 
-      /* h2 = 24px */
+      /* h2 */
       #pagecontent h2,
-      #overview h2 {
+      #overview h2,
+      #itineraryContent h2,
+      #inclusionsContent h2 {
         font-family: "Gloock", serif !important;
         font-size: 24px !important;
         font-weight: 700 !important;
@@ -85,9 +99,11 @@
         margin: 18px 0 12px !important;
       }
 
-      /* h3 = 18.72px */
+      /* h3 */
       #pagecontent h3,
-      #overview h3 {
+      #overview h3,
+      #itineraryContent h3,
+      #inclusionsContent h3 {
         font-family: "Gloock", serif !important;
         font-size: 18.72px !important;
         font-weight: 600 !important;
@@ -96,9 +112,11 @@
         margin: 16px 0 10px !important;
       }
 
-      /* h4 = 16px */
+      /* h4 */
       #pagecontent h4,
-      #overview h4 {
+      #overview h4,
+      #itineraryContent h4,
+      #inclusionsContent h4 {
         font-family: "Gloock", serif !important;
         font-size: 16px !important;
         font-weight: 600 !important;
@@ -107,9 +125,11 @@
         margin: 14px 0 8px !important;
       }
 
-      /* h5 = 13.28px */
+      /* h5 */
       #pagecontent h5,
-      #overview h5 {
+      #overview h5,
+      #itineraryContent h5,
+      #inclusionsContent h5 {
         font-family: "Gloock", serif !important;
         font-size: 13.28px !important;
         font-weight: 500 !important;
@@ -118,9 +138,11 @@
         margin: 12px 0 6px !important;
       }
 
-      /* h6 = 10.72px */
+      /* h6 */
       #pagecontent h6,
-      #overview h6 {
+      #overview h6,
+      #itineraryContent h6,
+      #inclusionsContent h6 {
         font-family: "Gloock", serif !important;
         font-size: 10.72px !important;
         font-weight: 500 !important;
@@ -582,7 +604,7 @@
     </section>
 
     <!-- Gallery Section -->
-    <section class="py-4 bg-white">
+    <!-- <section class="py-4 bg-white">
       <div class="max-w-[85%] mx-auto">
         <div
           class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12"
@@ -594,9 +616,9 @@
             <h2 class="gloock-regular text-4xl text-slate-900 mt-2">
               Trek Photo Gallery
             </h2>
-          </div>
-          <!-- Gallery Tabs -->
-          <div id="photoTypeTab" class="flex flex-wrap gap-3">
+          </div> -->
+    <!-- Gallery Tabs -->
+    <!-- <div id="photoTypeTab" class="flex flex-wrap gap-3">
             <button
               class="active-season-tab bg-slate-900 text-[#d5e880] season-tab px-8 py-3 rounded-xl font-bold border-2 border-slate-900 transition-all duration-300"
               data-season="summer"
@@ -609,15 +631,14 @@
             >
               Autumn
             </button>
-          </div>
-        </div>
+          </div> -->
+    <!-- </div> -->
 
-        <!-- Mosaic Grid Layout -->
-        <div
+    <!-- Mosaic Grid Layout -->
+    <!-- <div
           id="galleryGrid"
           class="grid grid-cols-1 md:grid-cols-12 gap-5 min-h-[600px]"
         >
-          <!-- Summer Gallery (Shown by default) -->
           <div
             class="gallery-item summer col-span-1 md:col-span-12 grid grid-cols-1 md:grid-cols-12 gap-5 transition-all duration-500"
           >
@@ -673,7 +694,6 @@
             </div>
           </div>
 
-          <!-- Autumn Gallery (Hidden by default) -->
           <div
             class="gallery-item autumn hidden col-span-1 md:col-span-12 grid grid-cols-1 md:grid-cols-12 gap-5 transition-all duration-500"
           >
@@ -728,9 +748,9 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </div> -->
+    <!-- </div>
+    </section> -->
 
     <!--  new gallary2 -->
     <section class="py-14 bg-white">
@@ -753,7 +773,10 @@
 
           <!-- tabs -->
           <div class="w-full md:w-auto overflow-x-auto scrollbar-hide">
-            <div class="inline-flex md:flex gap-3 min-w-max md:min-w-0 py-2">
+            <div
+              id="galleryTabs"
+              class="inline-flex md:flex gap-3 min-w-max md:min-w-0 py-2"
+            >
               <button
                 id="summerBtn"
                 onclick="showGallery('summer')"
@@ -788,23 +811,38 @@
             </div>
           </div>
         </div>
-        <div
-          id="summerGallery"
-          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-        ></div>
+        <div class="relative mt-8">
+          <!-- Left Arrow -->
+          <button
+            id="galleryPrev"
+            onclick="prevGalleryPage()"
+            class="hidden absolute left-2 md:left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/90 shadow-lg border border-slate-200 hover:bg-[#d5e880] transition"
+          >
+            ❮
+          </button>
 
-        <div
-          id="winterGallery"
-          class="hidden grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-        ></div>
+          <!-- Gallery -->
+          <div
+            id="galleryContainer"
+            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+          ></div>
+          <!-- <div
+            id="summerGallery"
+            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+          ></div> -->
 
-        <div class="text-center mt-8">
+          <!-- <div
+            id="winterGallery"
+            class="hidden grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+          ></div> -->
+
+          <!-- Right Arrow -->
           <button
             id="galleryNext"
             onclick="nextGalleryPage()"
-            class="hidden px-8 py-3 rounded-full bg-[#243146] text-[#d5e880] font-semibold"
+            class="absolute right-2 md:right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/90 shadow-lg border border-slate-200 hover:bg-[#d5e880] transition"
           >
-            Next Photos →
+            ❯
           </button>
         </div>
       </div>
@@ -814,6 +852,7 @@
     <div
       id="lightbox"
       class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50 p-4"
+      style="display: none"
     >
       <button
         onclick="closeLightbox()"
@@ -1405,7 +1444,7 @@
           <div class="w-full h-1 bg-red-500 mt-8"></div>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-10">
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10">
           <!-- Season -->
           <div>
             <div
@@ -1425,8 +1464,11 @@
                 By Season
               </h5>
             </div>
-            <ul class="space-y-3 text-slate-500 text-sm font-medium">
-              <li>
+            <ul
+              id="seasonList"
+              class="space-y-3 text-slate-500 text-sm font-medium"
+            >
+              <!-- <li>
                 <a href="#" class="hover:text-red-500 transition-colors"
                   >Autumn</a
                 >
@@ -1455,7 +1497,7 @@
                 <a href="#" class="hover:text-red-500 transition-colors"
                   >Winter</a
                 >
-              </li>
+              </li> -->
             </ul>
           </div>
 
@@ -1479,9 +1521,10 @@
               </h5>
             </div>
             <div
+              id="monthList"
               class="grid grid-cols-2 gap-x-4 gap-y-3 text-slate-500 text-sm font-medium"
             >
-              <a href="#" class="hover:text-red-500 transition-colors"
+              <!-- <a href="#" class="hover:text-red-500 transition-colors"
                 >January</a
               ><a href="#" class="hover:text-red-500 transition-colors">July</a>
               <a href="#" class="hover:text-red-500 transition-colors"
@@ -1503,8 +1546,8 @@
               >
               <a href="#" class="hover:text-red-500 transition-colors">June</a
               ><a href="#" class="hover:text-red-500 transition-colors"
-                >December</a
-              >
+                >December</a 
+              >-->
             </div>
           </div>
 
@@ -1525,8 +1568,11 @@
                 By Duration
               </h5>
             </div>
-            <ul class="space-y-3 text-slate-500 text-sm font-medium">
-              <li>
+            <ul
+              id="durationList"
+              class="space-y-3 text-slate-500 text-sm font-medium"
+            >
+              <!-- <li>
                 <a href="#" class="hover:text-red-500 transition-colors"
                   >2 Days</a
                 >
@@ -1555,7 +1601,7 @@
                 <a href="#" class="hover:text-red-500 transition-colors"
                   >7+ Days</a
                 >
-              </li>
+              </li> -->
             </ul>
           </div>
 
@@ -1576,8 +1622,11 @@
                 By Difficulty
               </h5>
             </div>
-            <ul class="space-y-3 text-slate-500 text-sm font-medium text-xs">
-              <li>
+            <ul
+              id="difficultyList"
+              class="space-y-3 text-slate-500 text-sm font-medium text-xs"
+            >
+              <!-- <li>
                 <a href="#" class="hover:text-red-500 transition-colors"
                   >Easy</a
                 >
@@ -1606,7 +1655,7 @@
                 <a href="#" class="hover:text-red-500 transition-colors"
                   >Challenging</a
                 >
-              </li>
+              </li> -->
             </ul>
           </div>
 
@@ -1630,8 +1679,11 @@
                 By Region
               </h5>
             </div>
-            <ul class="space-y-3 text-slate-500 text-sm font-medium">
-              <li>
+            <ul
+              id="regionList"
+              class="space-y-3 text-slate-500 text-sm font-medium"
+            >
+              <!-- <li>
                 <a href="#" class="hover:text-red-500 transition-colors"
                   >Uttarakhand</a
                 >
@@ -1660,12 +1712,12 @@
                 <a href="#" class="hover:text-red-500 transition-colors"
                   >Himachal Pradesh</a
                 >
-              </li>
+              </li> -->
             </ul>
           </div>
 
           <!-- Nature -->
-          <div>
+          <!-- <div>
             <div
               class="flex items-center gap-2 mb-6 border-b-2 border-[#d5e880] pb-3"
             >
@@ -1715,10 +1767,10 @@
                 >
               </li>
             </ul>
-          </div>
+          </div> -->
 
           <!-- Features -->
-          <div>
+          <!-- <div>
             <div
               class="flex items-center gap-2 mb-6 border-b-2 border-[#d5e880] pb-3"
             >
@@ -1766,7 +1818,7 @@
                 >
               </li>
             </ul>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
@@ -1809,6 +1861,7 @@
     <script src="controllers/package.js"></script>
     <script src="/includes/common.js"></script>
     <script src="controllers/footerdetails.js"></script>
+    <script src="controllers/filteredPackages.js"></script>
 
     <!--Over view see more & see less script-->
     <script>
@@ -2120,6 +2173,10 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        //================== FILTERED PACKAGES ================
+        loadGroupedData(); //function are defined in filteredPackages.js
+
+        loadSimilarPackages(); //function are defined in package.js
         // Accordion Logic
         const accordionButtons = document.querySelectorAll(".accordion-btn");
         accordionButtons.forEach((button) => {
@@ -2371,7 +2428,7 @@
     </script>
 
     <!-- for photo gallay script -->
-    <script>
+    <!-- <script>
       const summerImages = [
         "./images/blog1.webp",
         "./images/blog1.webp",
@@ -2390,17 +2447,21 @@
         "./images/blog1.webp",
         "./images/blog1.webp",
         "./images/blog1.webp",
-        "./images/blog1.webp",
-        "./images/blog1.webp",
+     
       ];
 
       let currentTab = "summer";
       let currentPage = 0;
       let currentIndex = 0;
       let currentImages = [];
-      const perPage = 12;
 
-      /* tab switch */
+      /* responsive images count */
+      function getPerPage() {
+        if (window.innerWidth < 768) return 4; // mobile = 4 images
+        if (window.innerWidth < 1024) return 6; // tablet = 6
+        return 12; // desktop = 12
+      }
+
       function showGallery(type) {
         currentTab = type;
         currentPage = 0;
@@ -2424,7 +2485,6 @@
         loadImages();
       }
 
-      /* load gallery */
       function loadImages() {
         const images = currentTab === "summer" ? summerImages : winterImages;
 
@@ -2435,44 +2495,45 @@
 
         gallery.innerHTML = "";
 
+        const perPage = getPerPage();
         const start = currentPage * perPage;
         const end = start + perPage;
 
         images.slice(start, end).forEach((img, index) => {
           gallery.innerHTML += `
-      <img
-        src="${img}"
-        onclick="openLightbox(${start + index}, '${currentTab}')"
-        class="gallery-img"
-      />
-    `;
+        <img
+          src="${img}"
+          onclick="openLightbox(${start + index}, '${currentTab}')"
+          class="gallery-img"
+        />
+      `;
         });
 
         const nextBtn = document.getElementById("galleryNext");
+        const prevBtn = document.getElementById("galleryPrev");
 
-        if (images.length > end) {
-          nextBtn.classList.remove("hidden");
-        } else {
-          nextBtn.classList.add("hidden");
-        }
+        nextBtn.classList.toggle("hidden", end >= images.length);
+        prevBtn.classList.toggle("hidden", currentPage === 0);
       }
 
-      /* next page */
       function nextGalleryPage() {
         currentPage++;
         loadImages();
       }
 
-      /* lightbox open */
+      function prevGalleryPage() {
+        if (currentPage > 0) {
+          currentPage--;
+          loadImages();
+        }
+      }
+
       function openLightbox(index, type) {
         currentImages = type === "summer" ? summerImages : winterImages;
-
         currentIndex = index;
 
         document.getElementById("lightbox").classList.remove("hidden");
-
         document.getElementById("lightbox").classList.add("flex");
-
         document.body.classList.add("overflow-hidden");
 
         updateLightbox();
@@ -2483,32 +2544,28 @@
           currentImages[currentIndex];
       }
 
-      /* next image */
       function nextImage() {
         currentIndex = (currentIndex + 1) % currentImages.length;
         updateLightbox();
       }
 
-      /* prev image */
       function prevImage() {
         currentIndex =
           (currentIndex - 1 + currentImages.length) % currentImages.length;
-
         updateLightbox();
       }
 
-      /* close */
       function closeLightbox() {
         document.getElementById("lightbox").classList.add("hidden");
-
         document.getElementById("lightbox").classList.remove("flex");
-
         document.body.classList.remove("overflow-hidden");
       }
+
+      window.addEventListener("resize", loadImages);
 
       window.onload = function () {
         showGallery("summer");
       };
-    </script>
+    </script> -->
   </body>
 </html>
