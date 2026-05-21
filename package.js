@@ -1,4 +1,11 @@
 // For Single Package Page
+let allAddOns = [];
+
+const urlParams = new URLSearchParams(
+  window.location.search,
+);
+const packageId = urlParams.get("slug") || "N/A"; // default to some package if slug missing
+
 async function loadPackageDetails(slug) {
   try {
     const endpoint = "/api/packages";
@@ -6,31 +13,43 @@ async function loadPackageDetails(slug) {
     const response = await fetch(url + `/${slug}`);
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error(
+        `HTTP error! status: ${response.status}`,
+      );
     }
     const packageData = await response.json();
     console.log("Fetched Package Data:", packageData);
 
     const facts = document.getElementById("facts");
     const overview = document.getElementById("overview");
-    const itineraryContent = document.getElementById("itineraryContent");
-    const dayTabsWrapper = document.getElementById("dayTabsWrapper");
+    const itineraryContent = document.getElementById(
+      "itineraryContent",
+    );
+    const dayTabsWrapper = document.getElementById(
+      "dayTabsWrapper",
+    );
     const faqs = document.getElementById("faqs");
     const faqItem = document.getElementById("faq-item");
-    const inclusionsContent = document.getElementById("inclusionsContent");
+    const inclusionsContent = document.getElementById(
+      "inclusionsContent",
+    );
     const trekFess = document.getElementById("trekFess");
-    const availableDate = document.getElementById("availableDate");
-    const packageHeading = document.getElementById("packageHeading");
-    const packageBanner = document.getElementById("packageBanner");
-    const photoTypeTab = document.getElementById("photoTypeTab");
-    const galleryGrid = document.getElementById("galleryGrid");
-    const readMoreBtn = document.getElementById("toggleBtn");
-    const toggleText = document.getElementById("toggleText");
+    const availableDate =
+      document.getElementById("availableDate");
+    const packageHeading = document.getElementById(
+      "packageHeading",
+    );
+    const packageBanner =
+      document.getElementById("packageBanner");
+
+    const readMoreBtn =
+      document.getElementById("toggleBtn");
+    const toggleText =
+      document.getElementById("toggleText");
 
     facts.innerHTML = ``;
     faqItem.innerHTML = "";
-    photoTypeTab.innerHTML = "";
-    galleryGrid.innerHTML = "";
+
     // overview.innerHTML = ``;
     itineraryContent.innerHTML = ``;
     dayTabsWrapper.innerHTML = ``;
@@ -41,7 +60,8 @@ async function loadPackageDetails(slug) {
     packageHeading.innerText = ``;
     packageHeading.innerText = packageData.packageName;
     packageBanner.src =
-      packageData.gallery[0].url || "./images/account-banner.jpg";
+      packageData.gallery[0].url ||
+      "./images/account-banner.jpg";
     const itinerary = packageData.itineraries || [];
     const inclusionsData = packageData.otherOptions || [];
     const faqData = packageData.faqs || [];
@@ -106,8 +126,12 @@ async function loadPackageDetails(slug) {
       //   packageData.overview.replace(/&nbsp;/g, " ") ||
       //   "N/A";
 
-      const fullContent =
-        packageData.overview?.replace(/&nbsp;/g, " ") || "N/A";
+      const fullContent = packageData.overview
+        ? packageData.overview
+        : "N/A";
+      // const fullContent =
+      //   packageData.overview?.replace(/&nbsp;/g, " ") ||
+      //   "N/A";
 
       const words = fullContent.split(" ");
       const shortContent = words.slice(0, 100).join(" ");
@@ -138,7 +162,53 @@ async function loadPackageDetails(slug) {
       const price = packageData.offerPriceINR
         ? packageData.offerPriceINR
         : packageData.originalPriceINR;
-      const formattedPrice = Number(price).toLocaleString("en-IN");
+      const formattedPrice =
+        Number(price).toLocaleString("en-IN");
+
+      // ================= ADDONS API =================
+      let addOnsHTML = "";
+      let showMoreButton = "";
+
+      try {
+        const endpoint = "/api/additionals";
+        const url = API_CONFIG.getUrl(endpoint);
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error(
+            `HTTP error! status: ${response.status}`,
+          );
+        }
+
+        const additionals = await response.json();
+        allAddOns = additionals;
+        // only first 2 show
+        const visibleAddOns = additionals.slice(0, 2);
+
+        visibleAddOns.forEach((addOn) => {
+          addOnsHTML += `
+                    <p>
+                        ₹${Number(addOn.priceINR).toLocaleString("en-IN")} ${addOn.name}
+                    </p>
+                `;
+        });
+
+        // button only if more than 2 items
+        if (additionals.length > 2) {
+          showMoreButton = `
+                    <button
+                        onclick="openAddonsModal()"
+                        class="text-[#0f172a] font-semibold underline"
+                    >
+                        Show More
+                    </button>
+                `;
+        }
+      } catch (error) {
+        console.error("Addons Fetch Error:", error);
+      }
+
       trekFess.innerHTML += `<div class="p-5 md:p-6 space-y-4">
 
   <!-- Header -->
@@ -165,7 +235,7 @@ async function loadPackageDetails(slug) {
           </span>
         </div>
         <p class="text-sm text-slate-600 mt-1 plus-jakarta-sans">
-          Yuksom to Yuksom
+          ${region}
         </p>
       </div>
 
@@ -180,16 +250,10 @@ async function loadPackageDetails(slug) {
 
     <!-- Optional Additions -->
    <div class="text-sm text-slate-700 space-y-1 plus-jakarta-sans">
-  <p>₹1,400 Indiahikes Shield</p>
-  <p>₹6,400 Backpack Offloading</p>
+      ${addOnsHTML}
 
-  <button
-    onclick="openChargeModal()"
-    class="text-[#0f172a] font-semibold underline"
-  >
-    Show More
-  </button>
-</div>
+    ${showMoreButton}
+    </div>
     </div>
 
     <!-- Info Notes -->
@@ -197,8 +261,8 @@ async function loadPackageDetails(slug) {
     <!-- Links -->
     <div class="pt-3 border-t border-[#e7eddc] grid grid-cols-2 gap-2 text-sm font-semibold plus-jakarta-sans">
   <a href="#" class="text-[#243146] hover:underline">Inclusions & Exclusions</a>
-  <a href="#" class="text-[#243146] hover:underline">Terms & Conditions</a>
-  <a href="#" class="text-[#243146] hover:underline">Refund Policy</a>
+  <a href="termmndcondition.html" class="text-[#243146] hover:underline">Terms & Conditions</a>
+  <a href="refund.html" class="text-[#243146] hover:underline">Refund Policy</a>
 
   <a href="javascript:void(0)"
      onclick="openScholarshipModal()"
@@ -230,196 +294,159 @@ async function loadPackageDetails(slug) {
     }
 
     // ----======= GALLERY TAB ======----
-    packageData.tabs.forEach((pkgtab, index) => {
-      const galaryTabBtn = `<button class="season-tab px-8 py-3 rounded-xl transition-all duration-300 font-bold border-2 ${index === 0 ? "active-season-tab bg-slate-900 text-[#d5e880]" : "bg-white text-slate-600 border-[#e5e6dc] hover:border-slate-900 hover:text-slate-900"} "
-        data-season="${pkgtab}">${pkgtab}</button>`;
-      photoTypeTab.innerHTML += galaryTabBtn;
 
-      // gallery wrapper (one per tab)
-      const images = packageData.gallery.filter((img) => img.tab === pkgtab);
-      console.log("Gallery Images for tab", packageData.gallery);
-      // first 4 image
-      const bigImg = images[0];
-      const small1 = images[1];
-      const small2 = images[2];
-      const small3 = images[3];
+    const galleryContainer = document.getElementById(
+      "galleryContainer",
+    );
 
-      const hasBig = bigImg?.url;
-      const hasSmall1 = small1?.url;
-      const hasSmall2 = small2?.url;
-      const hasSmall3 = small3?.url;
+    const galleryData = packageData.gallery || [];
 
-      const extraCount = Math.max(images.length - 3, 0);
+    const groupedGallery = {};
 
-      let imagesHTML = "";
+    // group by tab
+    galleryData.forEach((img) => {
+      const tab = img.tab?.trim().toLowerCase();
 
-      images.forEach((img) => {
-        imagesHTML += `
-            <div class="col-span-1 md:col-span-4">
-                <img src="${img.url}" class="w-full h-[250px] object-cover rounded-xl"/>
-            </div>
-        `;
-      });
+      if (!groupedGallery[tab]) {
+        groupedGallery[tab] = [];
+      }
 
-      const safeTab = pkgtab.replace(/\s+/g, "-");
+      groupedGallery[tab].push(img);
+    });
+    window.groupedGallery = groupedGallery;
+    console.log(groupedGallery);
+    // dynamic tab buttons
+    const tabWrapper =
+      document.getElementById("galleryTabs");
 
-      const galaryPhotos = `
-     <div class="gallery-item ${safeTab} ${index !== 0 ? "hidden" : ""} col-span-1 md:col-span-12 grid grid-cols-1 md:grid-cols-12 gap-5">
+    tabWrapper.innerHTML = "";
 
-    <!-- BIG IMAGE -->
-    ${hasBig
-          ? `
-    <div class="md:col-span-7 group relative overflow-hidden rounded-[32px] h-[400px] md:h-[600px]">
-        <img src="${bigImg.url}" class="w-full h-full object-cover">
-    </div>`
-          : ""
-        }
-
-    <!-- RIGHT SIDE -->
-    <div class="md:col-span-5 grid grid-cols-2 gap-5">
-
-        ${hasSmall1
-          ? `
-        <div class="col-span-2 group relative overflow-hidden rounded-[32px] h-[290px]">
-            <img src="${small1.url}" class="w-full h-full object-cover">
-        </div>`
-          : ""
-        }
-
-        ${hasSmall2
-          ? `
-        <div class="group relative overflow-hidden rounded-[32px] h-[290px]">
-            <img src="${small2.url}" class="w-full h-full object-cover">
-        </div>`
-          : ""
-        }
-
-        ${hasSmall3
-          ? `
-        <div class="group relative overflow-hidden rounded-[32px] h-[290px]">
-            <img src="${small3.url}" class="w-full h-full object-cover">
-
-            ${extraCount > 0
-            ? `
-            <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
-                <span class="text-white text-2xl font-bold">
-                    + ${extraCount} Photos
-                </span>
-            </div>`
-            : ""
-          }
-        </div>`
-          : ""
-        }
-
-    </div>
-</div>
-`;
-
-      galleryGrid.innerHTML += galaryPhotos;
-
-      // packageData.gallery.forEach((img)=>{
-      //   if(img.tab === pkgtab){
-      //     console.log(pkgtab);
-      //   }
-
-      // });
-      // const galaryPhotos=`
-      // <div
-      //               class="gallery-item ${pkgtab} col-span-1 md:col-span-12 grid grid-cols-1 md:grid-cols-12 gap-5 transition-all duration-500">
-      //               <div class="md:col-span-7 group relative overflow-hidden rounded-[32px] h-[400px] md:h-[600px]">
-      //                   <img src="./images/blog1.webp" alt="Summer Expedition"
-      //                       class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
-      //                   <div
-      //                       class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-8">
-      //                       <span class="text-white font-bold text-xl">Base Camp Morning - Summer</span>
-      //                   </div>
-      //               </div>
-      //               <div class="md:col-span-5 grid grid-cols-2 gap-5">
-      //                   <div class="col-span-2 group relative overflow-hidden rounded-[32px] h-[290px]">
-      //                       <img src="./images/blog1.webp" alt="Summer View"
-      //                           class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
-      //                   </div>
-      //                   <div class="group relative overflow-hidden rounded-[32px] h-[290px]">
-      //                       <img src="./images/blog2.webp" alt="Summer Trail"
-      //                           class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
-      //                   </div>
-      //                   <div class="group relative overflow-hidden rounded-[32px] h-[290px]">
-      //                       <img src="./images/blog-photo.webp" alt="More Photos"
-      //                           class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
-      //                       <div class="absolute inset-0 bg-black/50 flex items-center justify-center cursor-pointer">
-      //                           <span class="text-white text-2xl font-bold">+ 16 Photos</span>
-      //                       </div>
-      //                   </div>
-      //               </div>
-      //           </div>
-      // `;
-      // galleryGrid.innerHTML +=galaryPhotos;
+    Object.keys(groupedGallery).forEach((tab, index) => {
+      tabWrapper.innerHTML += `
+    <button
+      onclick="showGallery('${tab}')"
+      id="${tab}Btn"
+      class="gallery-tab ${
+        index === 0 ? "active-tab" : ""
+      } px-6 py-3 rounded-full whitespace-nowrap"
+    >
+      ${tab.charAt(0).toUpperCase() + tab.slice(1)}
+    </button>
+  `;
     });
 
-    //availableDate section
-    // const availableDateData =
-    //   packageData.departureDates && packageData.departureDates.length > 0
-    //     ? packageData.departureDates
-    //     : [];
-    // // console.log("Available Dates:", availableDateData );
-    // availableDateData.forEach((date) => {
-    //   console.log("Processing Date:", date);
+    function renderGallery(images) {
+      galleryContainer.innerHTML = "";
 
-    //   const availableDateMonth = date.month || "N/A";
-    //   const availableDateYear = date.fromDate
-    //     ? new Date(date.fromDate).getFullYear()
-    //     : "N/A";
-    //   const fromDate = date.fromDate
-    //     ? new Date(date.fromDate).toLocaleDateString("en-US", {
-    //       month: "short",
-    //       day: "numeric",
-    //     })
-    //     : "N/A";
-    //   const toDate = date.toDate
-    //     ? new Date(date.toDate).toLocaleDateString("en-US", {
-    //       month: "short",
-    //       day: "numeric",
-    //     })
-    //     : "N/A";
-    //   //   console.log(`Adding Available Date:  (${fromDate} - ${toDate})`);
-    //   availableDate.innerHTML += `
-    //   <div  class="overflow-hidden mb-2 rounded-2xl border border-[#e5e6dc] bg-[#fbfcf8]">
-    // <button type="button"
-    //                                 class="date-accordion-btn flex w-full items-center justify-between px-5 py-4 text-left hover:bg-[#f8faf4] transition-colors">
-    //                                 <div class="flex items-center gap-2">
-    //                                     <svg class="accordion-icon h-4 w-4 text-slate-400 transition-transform duration-300"
-    //                                         fill="currentColor" viewBox="0 0 20 20">
-    //                                         <path d="M4.516 7.548c.436-.446 1.043-.481 1.576" />
-    //                                         <path fill-rule="evenodd"
-    //                                             d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-    //                                             clip-rule="evenodd" />
-    //                                     </svg>
-    //                                     <span class="font-bold text-slate-700 plus-jakarta-sans">${availableDateMonth} ${availableDateYear}</span>
-    //                                 </div>
-    //                             </button>
+      if (images.length === 0) {
+        galleryContainer.innerHTML = `
+      <p class="col-span-full text-center text-slate-500">
+        No images available
+      </p>
+    `;
+        return;
+      }
 
-    //                             <div class="accordion-content hidden border-t border-[#e5e6dc] bg-white p-2 space-y-2">
-    //                                 <div
-    //                                     class="flex items-center justify-between p-3 rounded-xl border border-[#edf2e5] hover:bg-[#f8faf7] transition">
-    //                                     <span class="text-sm font-medium text-slate-700 plus-jakarta-sans">${fromDate} - ${toDate}</span>
-    //                                     <a href="/booking.html?price=${packageData.offerPriceINR ? packageData.offerPriceINR : packageData.originalPriceINR}&id=${packageData._id}&name=${packageData.packageName}&fromDate=${date.fromDate}&toDate=${date.toDate}"><span
-    //                                         class="text-[10px] font-bold text-white bg-[#12b85c] px-2 py-0.5 rounded uppercase plus-jakarta-sans">Avbl</span></a>
-    //                                 </div>
+      images.forEach((img, index) => {
+        galleryContainer.innerHTML += `
+      <div class="overflow-hidden rounded-[20px]">
+        <img
+          src="${img.url}"
+          class="gallery-img"
+          onclick="openLightbox('${currentTab}', ${index})"
+        />
+      </div>
+    `;
+      });
+    }
 
-    //                                 <!--  <div
-    //                                     class="flex items-center justify-between p-3 rounded-xl border border-[#edf2e5] hover:bg-[#f8faf7] transition text-slate-400 opacity-60">
-    //                                     <span class="text-sm font-medium plus-jakarta-sans">Apr 18 - Apr 22</span>
-    //                                     <span
-    //                                         class="text-[10px] font-bold text-white bg-slate-300 px-2 py-0.5 rounded uppercase plus-jakarta-sans">Full</span>
-    //                                 </div> -->
-    //                             </div>
-    //                             </div>
-    // `;
-    // });
+    let currentTab = "";
+
+    window.showGallery = function (tab) {
+      currentTab = tab;
+
+      renderGallery(groupedGallery[tab]);
+
+      document
+        .querySelectorAll(".gallery-tab")
+        .forEach((btn) => {
+          btn.classList.remove("active-tab");
+        });
+
+      document
+        .getElementById(`${tab}Btn`)
+        .classList.add("active-tab");
+    };
+
+    const firstTab = Object.keys(groupedGallery)[0];
+
+    if (firstTab) {
+      showGallery(firstTab);
+    }
+
+    let currentGallery = [];
+    let currentIndex = 0;
+
+    window.openLightbox = function (tab, index) {
+      console.log("TAB:", tab);
+      console.log("INDEX:", index);
+
+      currentGallery = window.groupedGallery[tab] || [];
+
+      console.log("GALLERY:", currentGallery);
+
+      currentIndex = index;
+
+      const lightbox = document.getElementById("lightbox");
+
+      const lightboxImage =
+        document.getElementById("lightboxImage");
+
+      if (!currentGallery[currentIndex]) return;
+
+      lightbox.style.display = "flex";
+
+      lightboxImage.src = currentGallery[currentIndex].url;
+
+      document.body.style.overflow = "hidden";
+    };
+
+    window.closeLightbox = function () {
+      const lightbox = document.getElementById("lightbox");
+
+      lightbox.style.display = "none";
+
+      document.body.style.overflow = "auto";
+    };
+    window.nextImage = function () {
+      if (currentGallery.length === 0) return;
+
+      currentIndex++;
+
+      if (currentIndex >= currentGallery.length) {
+        currentIndex = 0;
+      }
+
+      document.getElementById("lightboxImage").src =
+        currentGallery[currentIndex].url;
+    };
+
+    window.prevImage = function () {
+      if (currentGallery.length === 0) return;
+
+      currentIndex--;
+
+      if (currentIndex < 0) {
+        currentIndex = currentGallery.length - 1;
+      }
+
+      document.getElementById("lightboxImage").src =
+        currentGallery[currentIndex].url;
+    };
 
     const availableDateData =
-      packageData.departureDates && packageData.departureDates.length > 0
+      packageData.departureDates &&
+      packageData.departureDates.length > 0
         ? packageData.departureDates
         : [];
 
@@ -452,90 +479,205 @@ async function loadPackageDetails(slug) {
       });
     } else {
       availableDate.innerHTML = `
-  <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
-    <p class="text-sm text-slate-600 plus-jakarta-sans mb-4">
-      No departure dates available at the moment. Please fill out the form below and we'll contact you.
-    </p>
+          <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+            <p class="text-sm text-slate-600 plus-jakarta-sans mb-4">
+              No departure dates available at the moment. Please fill out the form below and we'll contact you.
+            </p>
 
-    <form id="availabilityForm" class="space-y-4">
-      <!-- Name -->
-      <div>
-        <label class="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
-        <input 
-          type="text" 
-          name="name" 
-          placeholder="Enter your name"
-          class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d5e880]"
-          required
-        />
-      </div>
+            <form id="availabilityForm" class="space-y-4">
+              <!-- Name -->
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
+                <input 
+                  type="text" 
+                  name="name" 
+                  placeholder="Enter your name"
+                  class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d5e880]"
+                  required
+                />
+              </div>
 
-      <!-- Phone -->
-      <div>
-        <label class="block text-sm font-medium text-slate-700 mb-1">Phone Number</label>
-        <input 
-          type="tel" 
-          name="phone" 
-          placeholder="Enter phone number"
-          class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d5e880]"
-          required
-        />
-      </div>
+              <!-- Phone -->
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1">Phone Number</label>
+                <input 
+                  type="tel" 
+                  name="phone" 
+                  placeholder="Enter phone number"
+                  class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d5e880]"
+                  required
+                />
+              </div>
 
-      <!-- Email -->
-      <div>
-        <label class="block text-sm font-medium text-slate-700 mb-1">Email Address</label>
-        <input 
-          type="email" 
-          name="email" 
-          placeholder="Enter email address"
-          class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d5e880]"
-          required
-        />
-      </div>
+              <!-- Email -->
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1">Email Address</label>
+                <input 
+                  type="email" 
+                  name="email" 
+                  placeholder="Enter email address"
+                  class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d5e880]"
+                  required
+                />
+              </div>
 
-      <!-- Date Fields -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label class="block text-sm font-medium text-slate-700 mb-1">From Date</label>
-          <input 
-            type="date" 
-            name="fromDate"
-            class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d5e880]"
-            required
-          />
-        </div>
+              <!-- Date Fields -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1">From Date</label>
+                  <input 
+                    type="date" 
+                    name="fromDate"
+                    class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d5e880]"
+                    required
+                  />
+                </div>
 
-        <div>
-          <label class="block text-sm font-medium text-slate-700 mb-1">To Date</label>
-          <input 
-            type="date" 
-            name="toDate"
-            class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d5e880]"
-            required
-          />
-        </div>
-      </div>
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1">To Date</label>
+                  <input 
+                    type="date" 
+                    name="toDate"
+                    class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d5e880]"
+                    required
+                  />
+                </div>
+              </div>
 
-      <!-- Submit Button -->
-      <button 
-        type="submit"
-        class="w-full bg-[#d5e880] text-slate-900 py-3 rounded-lg font-semibold hover:bg-[#c4d96c] transition"
-      >
-        Submit Inquiry
-      </button>
-    </form>
-  </div>
-`;
+              <!-- Submit Button -->
+              <button 
+                type="submit"
+                class="w-full bg-[#d5e880] text-slate-900 py-3 rounded-lg font-semibold hover:bg-[#c4d96c] transition"
+              >
+                Submit Inquiry
+              </button>
+            </form>
+          </div>
+        `;
+    }
+
+    //setup form submission
+
+    // IMPORTANT
+    const availabilityForm = document.getElementById(
+      "availabilityForm",
+    );
+    if (availabilityForm) {
+      availabilityForm.addEventListener(
+        "submit",
+        async function (e) {
+          e.preventDefault();
+
+          // =========================
+          // Get Values
+          // =========================
+          const fullName =
+            availabilityForm.name.value.trim();
+          const contactNumber =
+            availabilityForm.phone.value.trim();
+          const email = availabilityForm.email.value.trim();
+          const fromDate = availabilityForm.fromDate.value;
+          const toDate = availabilityForm.toDate.value;
+
+          // =========================
+          // Validation Regex
+          // =========================
+
+          // Only letters and spaces
+          const nameRegex = /^[A-Za-z\s]+$/;
+
+          // Exactly 10 digits
+          const phoneRegex = /^[0-9]{10}$/;
+
+          // Email validation
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+          // =========================
+          // Full Name Validation
+          // =========================
+          if (!nameRegex.test(fullName)) {
+            alert("Full name should contain only letters");
+            return;
+          }
+
+          // =========================
+          // Phone Validation
+          // =========================
+          if (!phoneRegex.test(contactNumber)) {
+            alert("Phone number must be exactly 10 digits");
+            return;
+          }
+
+          // =========================
+          // Email Validation
+          // =========================
+          if (!emailRegex.test(email)) {
+            alert("Please enter a valid email address");
+            return;
+          }
+
+          // =========================
+          // Date Validation
+          // =========================
+          const from = new Date(fromDate);
+          const to = new Date(toDate);
+
+          if (to <= from) {
+            alert("To Date must be greater than From Date");
+            return;
+          }
+
+          const formData = {
+            packageId: packageId,
+            fullName: fullName,
+            contactNumber: contactNumber,
+            email: email,
+            fromDate: fromDate,
+            toDate: toDate,
+          };
+
+          console.log("package enquiry data:", formData);
+
+          try {
+            const endpoint = "/api/package-enquiries";
+            const url = API_CONFIG.getUrl(endpoint);
+            const response = await fetch(url, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+              alert("Inquiry submitted successfully!");
+              availabilityForm.reset();
+            } else {
+              alert(data.message || "Something went wrong");
+            }
+          } catch (error) {
+            console.error(error);
+            alert("Server Error");
+          }
+        },
+      );
     }
 
     // Sort groups by real date
-    const sortedGroups = Object.keys(groupedDates).sort((a, b) => {
-      const firstDateA = new Date(groupedDates[a][0].fromDate);
-      const firstDateB = new Date(groupedDates[b][0].fromDate);
+    const sortedGroups = Object.keys(groupedDates).sort(
+      (a, b) => {
+        const firstDateA = new Date(
+          groupedDates[a][0].fromDate,
+        );
+        const firstDateB = new Date(
+          groupedDates[b][0].fromDate,
+        );
 
-      return firstDateA - firstDateB;
-    });
+        return firstDateA - firstDateB;
+      },
+    );
 
     // Render UI
     sortedGroups.forEach((groupKey) => {
@@ -547,7 +689,7 @@ async function loadPackageDetails(slug) {
       });
 
       groupedDates[groupKey].forEach((date) => {
-        console.log("Processing Date:", date);
+        // console.log("Processing Date:", date);
         const from = new Date(date.fromDate);
         const to = new Date(date.toDate);
 
@@ -571,11 +713,13 @@ async function loadPackageDetails(slug) {
           ${fromDate} - ${toDate}
         </span>
 
-        <a href="/booking.html?price=${packageData.offerPriceINR
+        <a href="/booking.html?price=${
+          packageData.offerPriceINR
             ? packageData.offerPriceINR
             : packageData.originalPriceINR
-          }&id=${packageData._id}&name=${packageData.packageName
-          }&fromDate=${date.fromDate}&toDate=${date.toDate}">
+        }&id=${packageData._id}&name=${
+          packageData.packageName
+        }&fromDate=${date.fromDate}&toDate=${date.toDate}">
 
           <span class="text-[10px] font-bold text-white bg-[#12b85c] px-2 py-0.5 rounded uppercase plus-jakarta-sans">
             AVBL
@@ -624,10 +768,11 @@ async function loadPackageDetails(slug) {
       dayTabsWrapper.innerHTML += `
                               <button type="button"
                             class="day-tab px-4 py-2 md:px-6 md:py-3 rounded-full text-[#243146] font-bold border 
-                            ${index === 0
-          ? "active-day-tab bg-[#cddc67] border-[#cddc67]"
-          : "bg-white border-[#e5e6dc]"
-        }
+                            ${
+                              index === 0
+                                ? "active-day-tab bg-[#cddc67] border-[#cddc67]"
+                                : "bg-white border-[#e5e6dc]"
+                            }
                             "
                             data-day="day${index + 1}">
                             ${day.heading}
@@ -641,7 +786,7 @@ async function loadPackageDetails(slug) {
       
                             <div id="day${index + 1}" class="${index !== 0 ? "day-content hidden" : "day-content"} p-1 md:p-6">
                                 <h5 class="text-xl font-bold text-[#243146] mb-3"> ${day.subheading}</h5>
-                                <p class="text-slate-600 leading-8">${day.content.replace(/&nbsp;/g, " ")}</p>
+                                <p class="text-slate-600 leading-8">${day.content ? day.content : "N/A"}</p>
                             </div>
                             
                        
@@ -649,12 +794,12 @@ async function loadPackageDetails(slug) {
 
       //inclusion section
       inclusionsData.forEach((inclusion) => {
-        inclusionsContent.innerHTML += ` 
-                  <div class="overflow-hidden border-b border-[#d5e880]">
+        inclusionsContent.innerHTML += ` <div class="overflow-hidden border-b border-[#d5e880]">
                     <button type="button"
-                        class="inclusions-btn flex w-full items-center justify-between px-3 md:px-6 py-2 text-left bg-[#d5e880]">
+                        class="inclusions-btn flex w-full items-center justify-between px-3 md:px-6 py-2 text-left">
                         <div>
                             <h4 class="text-[20px] md:text-[22px] font-[600] text-[#243146] plus-jakarta-sans">${inclusion.name}</h4>
+                           
                         </div>
                         <svg class="accordion-icon h-7 w-7 text-slate-700 transition-transform duration-300" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.3">
@@ -662,10 +807,11 @@ async function loadPackageDetails(slug) {
                         </svg>
                     </button>
                     <div class="accordion-content hidden px-3 md:px-6 py-3">
-                  <div class="w-full">
-                  <p  class="flex items-start gap-3 plus-jakarta-sans text-slate-700 leading-7">
-                    <span id="inclusionsContent">${inclusion.content.replace(/&nbsp;/g, " ")}</span>
-                  </p>
+    <div id="inclusionsPera" class="w-full">
+        <p  class="flex items-start gap-3 plus-jakarta-sans text-slate-700 leading-7">
+           
+            ${inclusion.content ? inclusion.content : "N/A"}
+        </p>
     </div>
 </div>
                 </div>`;
@@ -711,18 +857,23 @@ async function loadPackageDetails(slug) {
         const isOpen = answer.classList.contains("open");
 
         // Close all
-        document.querySelectorAll(".faq-answer").forEach((el) => {
-          el.style.maxHeight = null;
-          el.classList.remove("open");
-        });
+        document
+          .querySelectorAll(".faq-answer")
+          .forEach((el) => {
+            el.style.maxHeight = null;
+            el.classList.remove("open");
+          });
 
-        document.querySelectorAll(".faq-icon").forEach((ic) => {
-          ic.style.transform = "rotate(0deg)";
-        });
+        document
+          .querySelectorAll(".faq-icon")
+          .forEach((ic) => {
+            ic.style.transform = "rotate(0deg)";
+          });
 
         // Open current (toggle)
         if (!isOpen) {
-          answer.style.maxHeight = answer.scrollHeight + "px";
+          answer.style.maxHeight =
+            answer.scrollHeight + "px";
           answer.classList.add("open");
           icon.style.transform = "rotate(45deg)";
         }
@@ -731,8 +882,10 @@ async function loadPackageDetails(slug) {
 
     // ================= Gallery Tab Logic =================
 
-    const seasonTabs = document.querySelectorAll(".season-tab");
-    const galleryItems = document.querySelectorAll(".gallery-item");
+    const seasonTabs =
+      document.querySelectorAll(".season-tab");
+    const galleryItems =
+      document.querySelectorAll(".gallery-item");
 
     seasonTabs.forEach((tab) => {
       tab.addEventListener("click", () => {
@@ -745,16 +898,31 @@ async function loadPackageDetails(slug) {
             "text-[#d5e880]",
             "border-slate-900",
           );
-          btn.classList.add("bg-white", "text-slate-600", "border-[#e5e6dc]");
+          btn.classList.add(
+            "bg-white",
+            "text-slate-600",
+            "border-[#e5e6dc]",
+          );
         });
-        tab.classList.add("bg-slate-900", "text-[#d5e880]", "border-slate-900");
-        tab.classList.remove("bg-white", "text-slate-600", "border-[#e5e6dc]");
+        tab.classList.add(
+          "bg-slate-900",
+          "text-[#d5e880]",
+          "border-slate-900",
+        );
+        tab.classList.remove(
+          "bg-white",
+          "text-slate-600",
+          "border-[#e5e6dc]",
+        );
 
         // Update Gallery Items
         galleryItems.forEach((item) => {
           if (item.classList.contains(season)) {
             item.classList.remove("hidden");
-            setTimeout(() => item.classList.add("opacity-100"), 10);
+            setTimeout(
+              () => item.classList.add("opacity-100"),
+              10,
+            );
           } else {
             item.classList.add("hidden");
             item.classList.remove("opacity-100");
@@ -767,6 +935,125 @@ async function loadPackageDetails(slug) {
   }
 }
 
+// async function loadRelatedPackages(
+//   slug,
+//   similerId,
+//   currentPackageId,
+// ) {
+//   // console.log("currentPackageId", currentPackageId);
+//   try {
+//     const endpoint = "/api/categories";
+//     const url = API_CONFIG.getUrl(endpoint);
+//     const response = await fetch(url + `/${similerId}`);
+//     const data = await response.json();
+//     console.log("similer package", data);
+//     const packages = data.packages;
+//     const similarTrack =
+//       document.getElementById("similarTrack");
+//     similarTrack.innerHTML = ``;
+//     for (const pkg of packages) {
+//       try {
+//         // console.log("test", pkg);
+//         if (pkg === currentPackageId) continue;
+
+//         const endpoint = "/api/packages";
+//         const url = API_CONFIG.getUrl(endpoint);
+
+//         const response = await fetch(url + `/${pkg}`);
+//         if (!response.ok) {
+//           console.warn("Package not found:", pkg);
+//           continue; // 🔥 skip this
+//         }
+
+//         const packageData = await response.json();
+//         console.log("Fetched Package Data:", packageData);
+//         const packageTitle = limitWords(
+//           packageData.packageName,
+//           3,
+//         );
+//         const packageDescription = limitWords(
+//           packageData.shortDescription,
+//           8,
+//         );
+//         // const price = packageData.offerPriceINR
+//         //   ? packageData.offerPriceINR
+//         //   : packageData.originalPriceINR;
+
+//         similarTrack.innerHTML += `
+//          <article
+//                         class="similar-card group w-full sm:w-[82%] md:w-[48%] lg:w-[31.8%] xl:w-[23.5%] shrink-0 overflow-hidden rounded-[24px] bg-white shadow-sm ring-1 ring-[#e9efdf] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl snap-start">
+//                         <div class="relative h-[220px] md:h-[240px] overflow-hidden">
+//                             <img src="${packageData.gallery && packageData.gallery.length > 0 ? packageData.gallery[0].url : "./images/trek1.webp"}" alt="Goenchala Trek"
+//                                 class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+//                             <div
+//                                 class="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent">
+//                             </div>
+
+//                             <span
+//                                 class="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 shadow-sm plus-jakarta-sans">
+//                                 Featured
+//                             </span>
+//                         </div>
+
+//                         <div class="p-5 md:p-6">
+//                             <div class="flex items-start justify-between gap-3 mb-4">
+//                                 <h4 class="text-xl font-bold text-slate-900 plus-jakarta-sans">${packageTitle}</h4>
+
+//                                 <span
+//                                     class="inline-flex shrink-0 items-center gap-1 rounded-full bg-[#d5e880]/35 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 plus-jakarta-sans">
+//                                     <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+//                                         <path
+//                                             d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" />
+//                                     </svg>
+//                                     Sikkim
+//                                 </span>
+//                             </div>
+
+//                             <div class="grid grid-cols-2 gap-2 mb-5">
+//                                 <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
+//                                     <p
+//                                         class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
+//                                         Duration</p>
+//                                     <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">${packageData.duration}</p>
+//                                 </div>
+//                                 <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
+//                                     <p
+//                                         class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
+//                                         Grade</p>
+//                                     <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">Challenging
+//                                     </p>
+//                                 </div>
+//                             </div>
+
+//                             <a href="package.html?slug=${packageData.slug}&similerId=${similerId}&id=${packageData._id}"
+//                                 class="inline-flex w-full items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.6px] text-slate-800 shadow-sm transition-all duration-300 hover:border-[#d5e880] hover:bg-[#d5e880] hover:text-slate-900 plus-jakarta-sans">
+//                                 View Trek Details
+//                             </a>
+//                         </div>
+//                     </article>
+
+
+
+
+
+
+
+
+
+
+       
+//       `;
+//         // render
+//       } catch (err) {
+//         console.error("Package error:", err);
+//       }
+//     }
+//   } catch (error) {
+//     console.log("error", error);
+//   }
+// }
+
+//  day1 day2 day3 tabs
 async function loadSimilarPackages() {
   // console.log("currentPackageId", currentPackageId);
   try {
@@ -875,7 +1162,8 @@ async function loadSimilarPackages() {
   }
 }
 
-//  day1 day2 day3 tabs
+
+
 document.addEventListener("click", function (e) {
   const tab = e.target.closest(".day-tab");
   if (!tab) return;
@@ -883,20 +1171,39 @@ document.addEventListener("click", function (e) {
   const targetId = tab.dataset.day;
 
   const allTabs = document.querySelectorAll(".day-tab");
-  const allContents = document.querySelectorAll(".day-content");
+  const allContents =
+    document.querySelectorAll(".day-content");
 
   // reset tabs
   allTabs.forEach((btn) => {
-    btn.classList.remove("bg-[#cddc67]", "text-[#243146]", "border-[#cddc67]");
-    btn.classList.add("bg-white", "text-slate-700", "border-[#dfe3d3]");
+    btn.classList.remove(
+      "bg-[#cddc67]",
+      "text-[#243146]",
+      "border-[#cddc67]",
+    );
+    btn.classList.add(
+      "bg-white",
+      "text-slate-700",
+      "border-[#dfe3d3]",
+    );
   });
 
   // hide all content
-  allContents.forEach((content) => content.classList.add("hidden"));
+  allContents.forEach((content) =>
+    content.classList.add("hidden"),
+  );
 
   // active tab
-  tab.classList.add("bg-[#cddc67]", "text-[#243146]", "border-[#cddc67]");
-  tab.classList.remove("bg-white", "text-slate-700", "border-[#dfe3d3]");
+  tab.classList.add(
+    "bg-[#cddc67]",
+    "text-[#243146]",
+    "border-[#cddc67]",
+  );
+  tab.classList.remove(
+    "bg-white",
+    "text-slate-700",
+    "border-[#dfe3d3]",
+  );
 
   // show selected content
   const target = document.getElementById(targetId);
@@ -912,13 +1219,17 @@ document.addEventListener("click", function (e) {
     const content = button.nextElementSibling;
     const icon = button.querySelector(".accordion-icon");
 
-    document.querySelectorAll(".accordion-content").forEach((item) => {
-      if (item !== content) item.classList.add("hidden");
-    });
+    document
+      .querySelectorAll(".accordion-content")
+      .forEach((item) => {
+        if (item !== content) item.classList.add("hidden");
+      });
 
-    document.querySelectorAll(".accordion-icon").forEach((ic) => {
-      if (ic !== icon) ic.classList.remove("rotate-180");
-    });
+    document
+      .querySelectorAll(".accordion-icon")
+      .forEach((ic) => {
+        if (ic !== icon) ic.classList.remove("rotate-180");
+      });
 
     content.classList.toggle("hidden");
     icon.classList.toggle("rotate-180");
@@ -935,12 +1246,16 @@ document.addEventListener("click", function (e) {
   const icon = btn.querySelector(".accordion-icon");
 
   // close others
-  document.querySelectorAll(".inclusions-btn").forEach((b) => {
-    if (b !== btn) {
-      b.nextElementSibling.classList.add("hidden");
-      b.querySelector(".accordion-icon")?.classList.remove("rotate-180");
-    }
-  });
+  document
+    .querySelectorAll(".inclusions-btn")
+    .forEach((b) => {
+      if (b !== btn) {
+        b.nextElementSibling.classList.add("hidden");
+        b.querySelector(
+          ".accordion-icon",
+        )?.classList.remove("rotate-180");
+      }
+    });
 
   content.classList.toggle("hidden");
   icon?.classList.toggle("rotate-180");
@@ -955,13 +1270,71 @@ document.addEventListener("click", function (e) {
   const icon = datebtn.querySelector(".accordion-icon");
 
   // close others
-  document.querySelectorAll(".date-accordion-btn").forEach((b) => {
-    if (b !== datebtn) {
-      b.nextElementSibling.classList.add("hidden");
-      b.querySelector(".accordion-icon")?.classList.remove("rotate-180");
-    }
-  });
+  document
+    .querySelectorAll(".date-accordion-btn")
+    .forEach((b) => {
+      if (b !== datebtn) {
+        b.nextElementSibling.classList.add("hidden");
+        b.querySelector(
+          ".accordion-icon",
+        )?.classList.remove("rotate-180");
+      }
+    });
 
   content.classList.toggle("hidden");
   icon?.classList.toggle("rotate-180");
 });
+
+function openAddonsModal() {
+  console.log("openAddonsModal", allAddOns);
+
+  const modal = document.getElementById("chargeModal");
+  const modalContent = document.getElementById(
+    "chargeModalContent",
+  );
+
+  if (!modal || !modalContent) {
+    console.error("Modal element not found");
+    return;
+  }
+
+  modalContent.innerHTML = "";
+
+  if (!allAddOns || allAddOns.length === 0) {
+    modalContent.innerHTML = `
+            <p class="text-red-500">
+                No add-ons found
+            </p>
+        `;
+  } else {
+    allAddOns.forEach((addOn) => {
+      modalContent.innerHTML += `
+                <div class="flex justify-between border p-3 rounded-xl">
+
+                    <span class="font-medium">
+                        ${addOn.name}
+                    </span>
+
+                    <span class="font-bold">
+                        ₹${Number(addOn.priceINR).toLocaleString("en-IN")}
+                    </span>
+
+                </div>
+            `;
+    });
+  }
+
+  modal.classList.remove("hidden");
+  modal.classList.add("flex");
+
+  document.body.classList.add("overflow-hidden");
+}
+
+function closeChargeModal() {
+  const modal = document.getElementById("chargeModal");
+
+  modal.classList.add("hidden");
+  modal.classList.remove("flex");
+
+  document.body.classList.remove("overflow-hidden");
+}

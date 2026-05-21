@@ -39,16 +39,16 @@
     #overview span,
     #overview a,
     #overview div,
-    #itineraryContent p,
-    #itineraryContent li,
-    #itineraryContent span,
-    #itineraryContent a,
-    #itineraryContent div,
     #inclusionsContent p,
     #inclusionsContent li,
     #inclusionsContent span,
     #inclusionsContent a,
-    #inclusionsContent div {
+    #inclusionsContent div,
+    #inclusionsPera p,
+    #inclusionsPera li,
+    #inclusionsPera span,
+    #inclusionsPera a,
+    #inclusionsPera div {
       font-family: "Plus Jakarta Sans", sans-serif !important;
       font-size: 16px !important;
       font-weight: 400 !important;
@@ -60,8 +60,8 @@
     /* h1 */
     #pagecontent h1,
     #overview h1,
-    #itineraryContent h1,
-    #inclusionsContent h1 {
+    #inclusionsContent h1,
+    #inclusionsPera h1 {
       font-family: "Gloock", serif !important;
       font-size: 36px !important;
       font-weight: 700 !important;
@@ -73,8 +73,8 @@
     /* h2 */
     #pagecontent h2,
     #overview h2,
-    #itineraryContent h2,
-    #inclusionsContent h2 {
+    #inclusionsContent h2,
+    #inclusionsPera h2 {
       font-family: "Gloock", serif !important;
       font-size: 24px !important;
       font-weight: 700 !important;
@@ -86,8 +86,8 @@
     /* h3 */
     #pagecontent h3,
     #overview h3,
-    #itineraryContent h3,
-    #inclusionsContent h3 {
+    #inclusionsContent h3,
+    #inclusionsPera h3 {
       font-family: "Gloock", serif !important;
       font-size: 18.72px !important;
       font-weight: 600 !important;
@@ -99,8 +99,8 @@
     /* h4 */
     #pagecontent h4,
     #overview h4,
-    #itineraryContent h4,
-    #inclusionsContent h4 {
+    #inclusionsContent h4,
+    #inclusionsPera h4 {
       font-family: "Gloock", serif !important;
       font-size: 16px !important;
       font-weight: 600 !important;
@@ -112,8 +112,8 @@
     /* h5 */
     #pagecontent h5,
     #overview h5,
-    #itineraryContent h5,
-    #inclusionsContent h5 {
+    #inclusionsContent h5,
+    #inclusionsPera h5 {
       font-family: "Gloock", serif !important;
       font-size: 13.28px !important;
       font-weight: 500 !important;
@@ -125,8 +125,8 @@
     /* h6 */
     #pagecontent h6,
     #overview h6,
-    #itineraryContent h6,
-    #inclusionsContent h6 {
+    #inclusionsContent h6,
+    #inclusionsPera h6 {
       font-family: "Gloock", serif !important;
       font-size: 10.72px !important;
       font-weight: 500 !important;
@@ -703,8 +703,7 @@
   </section>
 
   <!-- Lightbox gallary-->
-  <div id="lightbox" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50 p-4"
-    style="display: none">
+  <div id="lightbox" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50 p-4" style="display:none">
     <button onclick="closeLightbox()" class="absolute top-6 right-8 text-white text-4xl">
       ×
     </button>
@@ -761,87 +760,284 @@
         <div id="similarTrack"
           class="flex gap-4 md:gap-6 will-change-transform lg:transition-transform lg:duration-500 lg:ease-out">
           <!-- Card 1 -->
-          <!-- <article
-              class="similar-card group w-full sm:w-[82%] md:w-[48%] lg:w-[31.8%] xl:w-[23.5%] shrink-0 overflow-hidden rounded-[24px] bg-white shadow-sm ring-1 ring-[#e9efdf] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl snap-start"
-            >
-              <div class="relative h-[220px] md:h-[240px] overflow-hidden">
-                <img
-                  src="./images/blog-photo.webp"
-                  alt="Goenchala Trek"
-                  class="w-full h-full object-cover transition duration-700 group-hover:scale-110"
-                />
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent"
-                ></div>
+          <article
+            class="similar-card group w-full sm:w-[82%] md:w-[48%] lg:w-[31.8%] xl:w-[23.5%] shrink-0 overflow-hidden rounded-[24px] bg-white shadow-sm ring-1 ring-[#e9efdf] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl snap-start">
+            <div class="relative h-[220px] md:h-[240px] overflow-hidden">
+              <img src="./images/blog-photo.webp" alt="Goenchala Trek"
+                class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent"></div>
+
+              <span
+                class="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 shadow-sm plus-jakarta-sans">
+                Featured
+              </span>
+            </div>
+
+            <div class="p-5 md:p-6">
+              <div class="flex items-start justify-between gap-3 mb-4">
+                <h4 class="text-xl font-bold text-slate-900 plus-jakarta-sans">
+                  Goenchala Trek
+                </h4>
 
                 <span
-                  class="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 shadow-sm plus-jakarta-sans"
-                >
-                  Featured
+                  class="inline-flex shrink-0 items-center gap-1 rounded-full bg-[#d5e880]/35 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 plus-jakarta-sans">
+                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" />
+                  </svg>
+                  Sikkim
                 </span>
               </div>
 
-              <div class="p-5 md:p-6">
-                <div class="flex items-start justify-between gap-3 mb-4">
-                  <h4
-                    class="text-xl font-bold text-slate-900 plus-jakarta-sans"
-                  >
-                    Goenchala Trek
-                  </h4>
-
-                  <span
-                    class="inline-flex shrink-0 items-center gap-1 rounded-full bg-[#d5e880]/35 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 plus-jakarta-sans"
-                  >
-                    <svg
-                      class="w-3 h-3"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                      />
-                    </svg>
-                    Sikkim
-                  </span>
+              <div class="grid grid-cols-2 gap-2 mb-5">
+                <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
+                  <p class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
+                    Duration
+                  </p>
+                  <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">
+                    11 Days
+                  </p>
                 </div>
-
-                <div class="grid grid-cols-2 gap-2 mb-5">
-                  <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
-                    <p
-                      class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans"
-                    >
-                      Duration
-                    </p>
-                    <p
-                      class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1"
-                    >
-                      11 Days
-                    </p>
-                  </div>
-                  <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
-                    <p
-                      class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans"
-                    >
-                      Grade
-                    </p>
-                    <p
-                      class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1"
-                    >
-                      Challenging
-                    </p>
-                  </div>
+                <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
+                  <p class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
+                    Grade
+                  </p>
+                  <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">
+                    Challenging
+                  </p>
                 </div>
-
-                <a
-                  href="#"
-                  class="inline-flex w-full items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.6px] text-slate-800 shadow-sm transition-all duration-300 hover:border-[#d5e880] hover:bg-[#d5e880] hover:text-slate-900 plus-jakarta-sans"
-                >
-                  View Trek Details
-                </a>
               </div>
-            </article> -->
 
+              <a href="#"
+                class="inline-flex w-full items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.6px] text-slate-800 shadow-sm transition-all duration-300 hover:border-[#d5e880] hover:bg-[#d5e880] hover:text-slate-900 plus-jakarta-sans">
+                View Trek Details
+              </a>
+            </div>
+          </article>
 
+          <!-- Card 2 -->
+          <article
+            class="similar-card group w-full sm:w-[82%] md:w-[48%] lg:w-[31.8%] xl:w-[23.5%] shrink-0 overflow-hidden rounded-[24px] bg-white shadow-sm ring-1 ring-[#e9efdf] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl snap-start">
+            <div class="relative h-[220px] md:h-[240px] overflow-hidden">
+              <img src="./images/blog1.webp" alt="Sandakphu Trek"
+                class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent"></div>
+
+              <span
+                class="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 shadow-sm plus-jakarta-sans">
+                Popular
+              </span>
+            </div>
+
+            <div class="p-5 md:p-6">
+              <div class="flex items-start justify-between gap-3 mb-4">
+                <h4 class="text-xl font-bold text-slate-900 plus-jakarta-sans">
+                  Sandakphu Trek
+                </h4>
+
+                <span
+                  class="inline-flex shrink-0 items-center gap-1 rounded-full bg-[#d5e880]/35 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 plus-jakarta-sans">
+                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" />
+                  </svg>
+                  Bengal
+                </span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2 mb-5">
+                <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
+                  <p class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
+                    Duration
+                  </p>
+                  <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">
+                    6 Days
+                  </p>
+                </div>
+                <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
+                  <p class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
+                    Grade
+                  </p>
+                  <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">
+                    Moderate
+                  </p>
+                </div>
+              </div>
+
+              <a href="#"
+                class="inline-flex w-full items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.6px] text-slate-800 shadow-sm transition-all duration-300 hover:border-[#d5e880] hover:bg-[#d5e880] hover:text-slate-900 plus-jakarta-sans">
+                View Trek Details
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article
+            class="similar-card group w-full sm:w-[82%] md:w-[48%] lg:w-[31.8%] xl:w-[23.5%] shrink-0 overflow-hidden rounded-[24px] bg-white shadow-sm ring-1 ring-[#e9efdf] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl snap-start">
+            <div class="relative h-[220px] md:h-[240px] overflow-hidden">
+              <img src="./images/blog2.webp" alt="Dzongri Trek"
+                class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent"></div>
+
+              <span
+                class="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 shadow-sm plus-jakarta-sans">
+                Trending
+              </span>
+            </div>
+
+            <div class="p-5 md:p-6">
+              <div class="flex items-start justify-between gap-3 mb-4">
+                <h4 class="text-xl font-bold text-slate-900 plus-jakarta-sans">
+                  Dzongri Trek
+                </h4>
+
+                <span
+                  class="inline-flex shrink-0 items-center gap-1 rounded-full bg-[#d5e880]/35 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 plus-jakarta-sans">
+                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" />
+                  </svg>
+                  Sikkim
+                </span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2 mb-5">
+                <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
+                  <p class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
+                    Duration
+                  </p>
+                  <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">
+                    8 Days
+                  </p>
+                </div>
+                <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
+                  <p class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
+                    Grade
+                  </p>
+                  <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">
+                    Moderate
+                  </p>
+                </div>
+              </div>
+
+              <a href="#"
+                class="inline-flex w-full items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.6px] text-slate-800 shadow-sm transition-all duration-300 hover:border-[#d5e880] hover:bg-[#d5e880] hover:text-slate-900 plus-jakarta-sans">
+                View Trek Details
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article
+            class="similar-card group w-full sm:w-[82%] md:w-[48%] lg:w-[31.8%] xl:w-[23.5%] shrink-0 overflow-hidden rounded-[24px] bg-white shadow-sm ring-1 ring-[#e9efdf] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl snap-start">
+            <div class="relative h-[220px] md:h-[240px] overflow-hidden">
+              <img src="./images/blog-photo.webp" alt="Singalila Ridge"
+                class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent"></div>
+
+              <span
+                class="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 shadow-sm plus-jakarta-sans">
+                Best Seller
+              </span>
+            </div>
+
+            <div class="p-5 md:p-6">
+              <div class="flex items-start justify-between gap-3 mb-4">
+                <h4 class="text-xl font-bold text-slate-900 plus-jakarta-sans">
+                  Singalila Ridge
+                </h4>
+
+                <span
+                  class="inline-flex shrink-0 items-center gap-1 rounded-full bg-[#d5e880]/35 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 plus-jakarta-sans">
+                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" />
+                  </svg>
+                  Nepal
+                </span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2 mb-5">
+                <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
+                  <p class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
+                    Duration
+                  </p>
+                  <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">
+                    10 Days
+                  </p>
+                </div>
+                <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
+                  <p class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
+                    Grade
+                  </p>
+                  <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">
+                    Moderate
+                  </p>
+                </div>
+              </div>
+
+              <a href="#"
+                class="inline-flex w-full items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.6px] text-slate-800 shadow-sm transition-all duration-300 hover:border-[#d5e880] hover:bg-[#d5e880] hover:text-slate-900 plus-jakarta-sans">
+                View Trek Details
+              </a>
+            </div>
+          </article>
+
+          <!--card 5 -->
+          <article
+            class="similar-card group w-full sm:w-[82%] md:w-[48%] lg:w-[31.8%] xl:w-[23.5%] shrink-0 overflow-hidden rounded-[24px] bg-white shadow-sm ring-1 ring-[#e9efdf] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl snap-start">
+            <div class="relative h-[220px] md:h-[240px] overflow-hidden">
+              <img src="./images/blog-photo.webp" alt="Singalila Ridge"
+                class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent"></div>
+
+              <span
+                class="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 shadow-sm plus-jakarta-sans">
+                Best Seller
+              </span>
+            </div>
+
+            <div class="p-5 md:p-6">
+              <div class="flex items-start justify-between gap-3 mb-4">
+                <h4 class="text-xl font-bold text-slate-900 plus-jakarta-sans">
+                  Singalila Ridge
+                </h4>
+
+                <span
+                  class="inline-flex shrink-0 items-center gap-1 rounded-full bg-[#d5e880]/35 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 plus-jakarta-sans">
+                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" />
+                  </svg>
+                  Nepal
+                </span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2 mb-5">
+                <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
+                  <p class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
+                    Duration
+                  </p>
+                  <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">
+                    10 Days
+                  </p>
+                </div>
+                <div class="rounded-2xl bg-[#f8faf7] px-3 py-3 flex items-center">
+                  <p class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
+                    Grade
+                  </p>
+                  <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">
+                    Moderate
+                  </p>
+                </div>
+              </div>
+
+              <a href="#"
+                class="inline-flex w-full items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.6px] text-slate-800 shadow-sm transition-all duration-300 hover:border-[#d5e880] hover:bg-[#d5e880] hover:text-slate-900 plus-jakarta-sans">
+                View Trek Details
+              </a>
+            </div>
+          </article>
         </div>
       </div>
     </div>
@@ -1257,7 +1453,6 @@
   <script src="/controllers/users.js"></script>
   <script src="controllers/package.js"></script>
   <script src="/includes/common.js"></script>
-  <script src="/controllers/blog.js"></script>
   <script src="controllers/footerdetails.js"></script>
   <script src="controllers/filteredPackages.js"></script>
 
@@ -1494,14 +1689,88 @@
       }
     }
 
+    async function loadLimitedBlog(limit) {
+      try {
+        // const endpoint = API_CONFIG?.ENDPOINTS?.BLOGS || "/api/blogs";
+        const endpoint = "/api/blogs/recent/list?limit=" + limit;
+        const url = API_CONFIG.getUrl(endpoint);
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // console.log("Limited Blogs:", data);
+        const limitedBlog = document.getElementById("limitedBlog");
+        limitedBlog.innerHTML = "";
+        // ✅ EMPTY CHECK
+        if (!Array.isArray(data) || data.length === 0) {
+          limitedBlog.innerHTML = `
+                        <div class="col-span-full text-center py-10">
+                            <p class="text-slate-500 text-lg plus-jakarta-sans">
+                                No Blogs Found 😢
+                            </p>
+                        </div>
+                    `;
+          return;
+        }
+
+        data.forEach((blog) => {
+          const createdAt = new Date(blog.createdAt);
+          const options = { year: "numeric", month: "short", day: "2-digit" };
+          const formattedDate = createdAt.toLocaleDateString(
+            "en-US",
+            options,
+          );
+          const words = blog.content.trim().split(/\s+/).length;
+          const readTimes = Math.ceil(words / 200);
+          // console.log("Read Time:", readTimes, "minutes");
+          const title = limitWords(blog.heading, 8);
+          const description = limitWords(blog.metaDescription, 15);
+          const card = `
+
+
+                       <article class="group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-[32px] aspect-[16/10] mb-6">
+                        <img src="${blog.thumbnail.url || "./images/blog1.webp"}" alt="Article 1"
+                            class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 left-4">
+                            <span
+                                class="bg-white/90 backdrop-blur-md text-slate-900 text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-sm">${formattedDate || "N/A"}</span>
+                        </div>
+                    </div>
+                    <h4
+                        class="text-2xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors gloock-regular leading-tight">
+                        ${title || "No Title"}</h4>
+                    <p class="text-slate-500 line-clamp-2 plus-jakarta-sans leading-relaxed mb-4">${description || ""}</p>
+                    <a href="/singleblog.html?slug=${blog.slug}"
+                        class="text-slate-900 font-extrabold text-sm uppercase tracking-widest inline-flex items-center gap-2 group/link">
+                        Read Full Article
+                        <svg class="w-4 h-4 group-hover/link:translate-x-2 transition-transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                </article>
+
+            `;
+
+          limitedBlog.innerHTML += card;
+        });
+      } catch (error) {
+        console.error("Error fetching About Us data:", error);
+      }
+    }
   </script>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       //================== FILTERED PACKAGES ================
-      //loadGroupedData(); //function are defined in filteredPackages.js
-
+      loadGroupedData(); //function are defined in filteredPackages.js
       loadSimilarPackages(); //function are defined in package.js
+
+
       // Accordion Logic
       const accordionButtons = document.querySelectorAll(".accordion-btn");
       accordionButtons.forEach((button) => {
@@ -1583,10 +1852,10 @@
       loadSettings(); // function are defined in footerdetails.js
     });
     const limit = 4; // Set the limit for the number of blogs to fetch
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get("slug");
     document.addEventListener("DOMContentLoaded", function () {
-
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get("slug");
+      const currentPackageId = params.get("id");
       loadLimitedBlog(limit); //function are defined in blog.js
       loadStories(); //function are defined in stories.js
       if (slug) {
