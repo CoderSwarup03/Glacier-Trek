@@ -267,54 +267,49 @@ async function loadPackageDetails(slug) {
      <div class="gallery-item ${safeTab} ${index !== 0 ? "hidden" : ""} col-span-1 md:col-span-12 grid grid-cols-1 md:grid-cols-12 gap-5">
 
     <!-- BIG IMAGE -->
-    ${
-      hasBig
-        ? `
+    ${hasBig
+          ? `
     <div class="md:col-span-7 group relative overflow-hidden rounded-[32px] h-[400px] md:h-[600px]">
         <img src="${bigImg.url}" class="w-full h-full object-cover">
     </div>`
-        : ""
-    }
+          : ""
+        }
 
     <!-- RIGHT SIDE -->
     <div class="md:col-span-5 grid grid-cols-2 gap-5">
 
-        ${
-          hasSmall1
-            ? `
+        ${hasSmall1
+          ? `
         <div class="col-span-2 group relative overflow-hidden rounded-[32px] h-[290px]">
             <img src="${small1.url}" class="w-full h-full object-cover">
         </div>`
-            : ""
+          : ""
         }
 
-        ${
-          hasSmall2
-            ? `
+        ${hasSmall2
+          ? `
         <div class="group relative overflow-hidden rounded-[32px] h-[290px]">
             <img src="${small2.url}" class="w-full h-full object-cover">
         </div>`
-            : ""
+          : ""
         }
 
-        ${
-          hasSmall3
-            ? `
+        ${hasSmall3
+          ? `
         <div class="group relative overflow-hidden rounded-[32px] h-[290px]">
             <img src="${small3.url}" class="w-full h-full object-cover">
 
-            ${
-              extraCount > 0
-                ? `
+            ${extraCount > 0
+            ? `
             <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
                 <span class="text-white text-2xl font-bold">
                     + ${extraCount} Photos
                 </span>
             </div>`
-                : ""
-            }
-        </div>`
             : ""
+          }
+        </div>`
+          : ""
         }
 
     </div>
@@ -576,13 +571,11 @@ async function loadPackageDetails(slug) {
           ${fromDate} - ${toDate}
         </span>
 
-        <a href="/booking.html?price=${
-          packageData.offerPriceINR
+        <a href="/booking.html?price=${packageData.offerPriceINR
             ? packageData.offerPriceINR
             : packageData.originalPriceINR
-        }&id=${packageData._id}&name=${
-          packageData.packageName
-        }&fromDate=${date.fromDate}&toDate=${date.toDate}">
+          }&id=${packageData._id}&name=${packageData.packageName
+          }&fromDate=${date.fromDate}&toDate=${date.toDate}">
 
           <span class="text-[10px] font-bold text-white bg-[#12b85c] px-2 py-0.5 rounded uppercase plus-jakarta-sans">
             AVBL
@@ -631,11 +624,10 @@ async function loadPackageDetails(slug) {
       dayTabsWrapper.innerHTML += `
                               <button type="button"
                             class="day-tab px-4 py-2 md:px-6 md:py-3 rounded-full text-[#243146] font-bold border 
-                            ${
-                              index === 0
-                                ? "active-day-tab bg-[#cddc67] border-[#cddc67]"
-                                : "bg-white border-[#e5e6dc]"
-                            }
+                            ${index === 0
+          ? "active-day-tab bg-[#cddc67] border-[#cddc67]"
+          : "bg-white border-[#e5e6dc]"
+        }
                             "
                             data-day="day${index + 1}">
                             ${day.heading}
@@ -660,10 +652,9 @@ async function loadPackageDetails(slug) {
         inclusionsContent.innerHTML += ` 
                   <div class="overflow-hidden border-b border-[#d5e880]">
                     <button type="button"
-                        class="inclusions-btn flex w-full items-center justify-between px-3 md:px-6 py-2 text-left">
-                        <div id="inclusionsContent">
+                        class="inclusions-btn flex w-full items-center justify-between px-3 md:px-6 py-2 text-left bg-[#d5e880]">
+                        <div>
                             <h4 class="text-[20px] md:text-[22px] font-[600] text-[#243146] plus-jakarta-sans">${inclusion.name}</h4>
-                           
                         </div>
                         <svg class="accordion-icon h-7 w-7 text-slate-700 transition-transform duration-300" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.3">
@@ -672,8 +663,8 @@ async function loadPackageDetails(slug) {
                     </button>
                     <div class="accordion-content hidden px-3 md:px-6 py-3">
                   <div class="w-full">
-                  <p id="inclusionsContent" class=" flex items-start gap-3 plus-jakarta-sans text-slate-700 leading-7">
-                    <span>${inclusion.content.replace(/&nbsp;/g, " ")}</span>
+                  <p  class="flex items-start gap-3 plus-jakarta-sans text-slate-700 leading-7">
+                    <span id="inclusionsContent">${inclusion.content.replace(/&nbsp;/g, " ")}</span>
                   </p>
     </div>
 </div>
@@ -776,33 +767,37 @@ async function loadPackageDetails(slug) {
   }
 }
 
-async function loadRelatedPackages(slug, similerId, currentPackageId) {
+async function loadSimilarPackages() {
   // console.log("currentPackageId", currentPackageId);
   try {
-    const endpoint = "/api/categories";
+    const endpoint = "/api/packages";
     const url = API_CONFIG.getUrl(endpoint);
-    const response = await fetch(url + `/${similerId}`);
-    const data = await response.json();
-    console.log("similer package", data);
-    const packages = data.packages;
+    const response = await fetch(url);
+    const pkgdata = await response.json();
+    console.log("similer package", pkgdata);
+    const packages = pkgdata.data;
     const similarTrack = document.getElementById("similarTrack");
     similarTrack.innerHTML = ``;
-    for (const pkg of packages) {
+    // for (const packageData of data) {
+    packages.forEach((packageData) => {
       try {
+        const params = new URLSearchParams(window.location.search);
+        const currentPackageSlug = params.get("slug");
+        if (packageData.slug === currentPackageSlug) return; // skip current package
         // console.log("test", pkg);
-        if (pkg === currentPackageId) continue;
+        // if (pkg === currentPackageId) continue;
 
-        const endpoint = "/api/packages";
-        const url = API_CONFIG.getUrl(endpoint);
+        // const endpoint = "/api/packages";
+        // const url = API_CONFIG.getUrl(endpoint);
 
-        const response = await fetch(url + `/${pkg}`);
-        if (!response.ok) {
-          console.warn("Package not found:", pkg);
-          continue; // 🔥 skip this
-        }
+        // const response = await fetch(url + `/${pkg}`);
+        // if (!response.ok) {
+        //   console.warn("Package not found:", pkg);
+        //   continue; // 🔥 skip this
+        // }
 
-        const packageData = await response.json();
-        console.log("Fetched Package Data:", packageData);
+        // const packageData = await response.json();
+        // console.log("Fetched Package Data:", packageData);
         const packageTitle = limitWords(packageData.packageName, 3);
         const packageDescription = limitWords(packageData.shortDescription, 8);
         // const price = packageData.offerPriceINR
@@ -819,10 +814,7 @@ async function loadRelatedPackages(slug, similerId, currentPackageId) {
                                 class="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent">
                             </div>
 
-                            <span
-                                class="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 shadow-sm plus-jakarta-sans">
-                                Featured
-                            </span>
+                            
                         </div>
 
                         <div class="p-5 md:p-6">
@@ -835,7 +827,7 @@ async function loadRelatedPackages(slug, similerId, currentPackageId) {
                                         <path
                                             d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" />
                                     </svg>
-                                    Sikkim
+                                    ${packageData.region ? packageData.region : "N/A"}
                                 </span>
                             </div>
 
@@ -844,18 +836,18 @@ async function loadRelatedPackages(slug, similerId, currentPackageId) {
                                     <p
                                         class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
                                         Duration</p>
-                                    <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">${packageData.duration}</p>
+                                    <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">${packageData.duration ? packageData.duration : "N/A"}</p>
                                 </div>
                                 <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
                                     <p
                                         class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
                                         Grade</p>
-                                    <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">Challenging
+                                    <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">${packageData.difficulty ? packageData.difficulty : "N/A"}
                                     </p>
                                 </div>
                             </div>
 
-                            <a href="package.html?slug=${packageData.slug}&similerId=${similerId}&id=${packageData._id}"
+                            <a href="package.html?slug=${packageData.slug}"
                                 class="inline-flex w-full items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.6px] text-slate-800 shadow-sm transition-all duration-300 hover:border-[#d5e880] hover:bg-[#d5e880] hover:text-slate-900 plus-jakarta-sans">
                                 View Trek Details
                             </a>
@@ -877,7 +869,7 @@ async function loadRelatedPackages(slug, similerId, currentPackageId) {
       } catch (err) {
         console.error("Package error:", err);
       }
-    }
+    });
   } catch (error) {
     console.log("error", error);
   }
