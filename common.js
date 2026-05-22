@@ -52,7 +52,7 @@ async function loadCategory() {
     const mobileExpeditionDropdown = document.getElementById(
       "mobileExpeditionDropdown",
     );
-    
+
     trekkingDropdown.innerHTML = "";
     tourDropdown.innerHTML = "";
     expeditionDropdown.innerHTML = "";
@@ -112,9 +112,9 @@ async function loadCategory() {
   }
 }
 
-async function upcomingdropdown(){
-     try {
-   const endpoint = "/api/more-treks";
+async function upcomingdropdown() {
+  try {
+    const endpoint = "/api/more-treks";
     const url = API_CONFIG.getUrl(endpoint);
     const response = await fetch(url);
     if (!response.ok) {
@@ -126,32 +126,32 @@ async function upcomingdropdown(){
     const data = await response.json();
     // console.log("upcoming", data);
 
-    
+
     const upcomingTrekDropDown = document.getElementById(
       "upcomingTrekDropDown",
     );
     const mobileupcomingTrekDropDown = document.getElementById(
       "mobileupcomingTrekDropDown",
     );
-    upcomingTrekDropDown.innerHTML='';
-    mobileupcomingTrekDropDown.innerHTML='';
- data.data.forEach((item) => {
-    item.packages.forEach((packagesData)=>{
-        const link=`<a href="package.html?slug=${packagesData.slug}" 
+    upcomingTrekDropDown.innerHTML = '';
+    mobileupcomingTrekDropDown.innerHTML = '';
+    data.data.forEach((item) => {
+      item.packages.forEach((packagesData) => {
+        const link = `<a href="package.html?slug=${packagesData.slug}" 
                                     class="block px-4 py-3 text-slate-700 hover:bg-[#d5e880]/20">
-                                    ${limitWords(packagesData.packageName,2)}
+                                    ${limitWords(packagesData.packageName, 2)}
                                     </a>`;
-        const mobilelink=`<a href="package.html?slug=${packagesData.slug}" 
+        const mobilelink = `<a href="package.html?slug=${packagesData.slug}" 
                                     class="block text-white/70 hover:text-[#d5e880] text-sm">
-                                    ${limitWords(packagesData.packageName,2)}
+                                    ${limitWords(packagesData.packageName, 2)}
                                     </a>`;
-         if(item.type== "Upcoming"){
-            upcomingTrekDropDown.innerHTML +=link;
-            mobileupcomingTrekDropDown.innerHTML +=mobilelink;
-         }
-    })
-    
-    
+        if (item.type == "Upcoming") {
+          upcomingTrekDropDown.innerHTML += link;
+          mobileupcomingTrekDropDown.innerHTML += mobilelink;
+        }
+      })
+
+
     });
   } catch (error) {
     console.error("Error fetching Upcoming data:", error);
@@ -235,12 +235,12 @@ document.addEventListener("submit", function (e) {
       },
       body: JSON.stringify(data),
     })
-    .then(res => res.json())
-    .then(res => {
-      // console.log(res);
-      alert("Submitted ✅");
-      form.reset();
-    })
-    .catch(err => console.error(err));
+      .then(res => res.json())
+      .then(res => {
+        // console.log(res);
+        alert("Submitted ✅");
+        form.reset();
+      })
+      .catch(err => console.error(err));
   }
 });

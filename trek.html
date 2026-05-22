@@ -1,197 +1,175 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Glacier Treks & Adventure | Best Trekking Packages in Sikkim</title>
-    <meta
-      name="description"
-      content="Discover the best trekking packages in Sikkim, Darjeeling, and North Bengal with Glacier Treks & Adventure. Explore Himalayan trails, camping tours, and guided mountain adventures."
-    />
-    <meta
-      name="keywords"
-      content="trekking packages in Sikkim, Himalayan treks, trekking in Darjeeling, North Bengal trekking, adventure tours, mountain trekking, guided treks, Glacier Treks & Adventure"
-    />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="icon"
-      href="./favicon/favicon.ico"
-      type="image/x-icon"
-      sizes="16x16"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Gloock&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="./style/defaul-font.css" />
 
-    <style>
-      .plus-jakarta-sans {
-        font-family: "Plus Jakarta Sans", sans-serif;
-        font-optical-sizing: auto;
-        font-weight: 400;
-        font-style: normal;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glacier Treks & Adventure | Best Trekking Packages in Sikkim</title>
+  <meta name="description"
+    content="Discover the best trekking packages in Sikkim, Darjeeling, and North Bengal with Glacier Treks & Adventure. Explore Himalayan trails, camping tours, and guided mountain adventures." />
+  <meta name="keywords"
+    content="trekking packages in Sikkim, Himalayan treks, trekking in Darjeeling, North Bengal trekking, adventure tours, mountain trekking, guided treks, Glacier Treks & Adventure" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="./favicon/favicon.ico" type="image/x-icon" sizes="16x16" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Gloock&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="./style/defaul-font.css" />
 
-      .gloock-regular {
-        font-family: "Gloock", serif;
-        font-weight: 400;
-        font-style: normal;
-      }
+  <style>
+    .plus-jakarta-sans {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+    }
 
-      .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-      }
+    .gloock-regular {
+      font-family: "Gloock", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
 
-      .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-    </style>
-    <style>
-      /* body text only */
-      #pagecontent p,
-      #pagecontent li,
-      #pagecontent span,
-      #pagecontent a,
-      #pagecontent div {
-        font-size: 16px !important; /* default */
-        font-family: "Plus Jakarta Sans", sans-serif !important;
-        font-weight: 400 !important;
-        line-height: 1.8 !important;
-        color: #334155 !important;
-        margin-bottom: 16px !important;
-      }
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
 
-      /* h1 = 36px */
-      #pagecontent h1 {
-        font-size: 36px !important;
-        font-weight: 700 !important;
-        line-height: 1.2 !important;
-        font-family: "Gloock", serif !important;
-        color: #000 !important;
-        margin-bottom: 16px !important;
-      }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+  <style>
+    /* body text only */
+    #pagecontent p,
+    #pagecontent li,
+    #pagecontent span,
+    #pagecontent a,
+    #pagecontent div,
+    #faqContainer p,
+    #faqContainer li,
+    #faqContainer span,
+    #faqContainer a,
+    #faqContainer div {
+      font-size: 16px !important;
+      font-family: "Plus Jakarta Sans", sans-serif !important;
+      font-weight: 400 !important;
+      line-height: 1.8 !important;
+      color: #334155 !important;
+      margin-bottom: 16px !important;
+    }
 
-      /* h2 = 24px */
-      #pagecontent h2 {
-        font-size: 24px !important;
-        font-weight: 700 !important;
-        line-height: 1.3 !important;
-        font-family: "Gloock", serif !important;
-        color: #000 !important;
-        margin-bottom: 14px !important;
-      }
+    /* h1 = 36px */
+    #pagecontent h1,
+    #faqContainer h1 {
+      font-size: 36px !important;
+      font-weight: 700 !important;
+      line-height: 1.2 !important;
+      font-family: "Gloock", serif !important;
+      color: #000 !important;
+      margin-bottom: 16px !important;
+    }
 
-      /* h3 = 18.72px */
-      #pagecontent h3 {
-        font-size: 18.72px !important;
-        font-weight: 600 !important;
-        line-height: 1.4 !important;
-        font-family: "Gloock", serif !important;
-        color: #000 !important;
-        margin-bottom: 12px !important;
-      }
+    /* h2 = 24px */
+    #pagecontent h2,
+    #faqContainer h2 {
+      font-size: 24px !important;
+      font-weight: 700 !important;
+      line-height: 1.3 !important;
+      font-family: "Gloock", serif !important;
+      color: #000 !important;
+      margin-bottom: 14px !important;
+    }
 
-      /* h4 = 16px */
-      #pagecontent h4 {
-        font-size: 16px !important;
-        font-weight: 600 !important;
-        line-height: 1.4 !important;
-        font-family: "Gloock", serif !important;
-        color: #000 !important;
-        margin-bottom: 10px !important;
-      }
+    /* h3 = 18.72px */
+    #pagecontent h3,
+    #faqContainer h3 {
+      font-size: 18.72px !important;
+      font-weight: 600 !important;
+      line-height: 1.4 !important;
+      font-family: "Gloock", serif !important;
+      color: #000 !important;
+      margin-bottom: 12px !important;
+    }
 
-      /* h5 = 13.28px */
-      #pagecontent h5 {
-        font-size: 13.28px !important;
-        font-weight: 600 !important;
-        line-height: 1.5 !important;
-        font-family: "Gloock", serif !important;
-        color: #000 !important;
-        margin-bottom: 8px !important;
-      }
+    /* h4 = 16px */
+    #pagecontent h4,
+    #faqContainer h4 {
+      font-size: 16px !important;
+      font-weight: 600 !important;
+      line-height: 1.4 !important;
+      font-family: "Gloock", serif !important;
+      color: #000 !important;
+      margin-bottom: 10px !important;
+    }
 
-      /* h6 = 10.72px */
-      #pagecontent h6 {
-        font-size: 10.72px !important;
-        font-weight: 600 !important;
-        line-height: 1.5 !important;
-        font-family: "Gloock", serif !important;
-        color: #000 !important;
-        margin-bottom: 6px !important;
-      }
-    </style>
-  </head>
+    /* h5 = 13.28px */
+    #pagecontent h5,
+    #faqContainer h5 {
+      font-size: 13.28px !important;
+      font-weight: 600 !important;
+      line-height: 1.5 !important;
+      font-family: "Gloock", serif !important;
+      color: #000 !important;
+      margin-bottom: 8px !important;
+    }
 
-  <body>
-    <!-- header -->
-    <section
-      class="relative w-full min-h-[420px] md:min-h-[540px] overflow-hidden"
-    >
-      <!-- Background -->
-      <img
-        id="heroImage"
-        src=""
-        alt="Blog Banner"
-        class="absolute inset-0 w-full h-full object-cover"
-      />
+    /* h6 = 10.72px */
+    #pagecontent h6,
+    #faqContainer h6 {
+      font-size: 10.72px !important;
+      font-weight: 600 !important;
+      line-height: 1.5 !important;
+      font-family: "Gloock", serif !important;
+      color: #000 !important;
+      margin-bottom: 6px !important;
+    }
+  </style>
+</head>
 
-      <!-- Overlays -->
-      <div class="absolute inset-0 bg-black/50"></div>
-      <div
-        class="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-900/40 to-transparent"
-      ></div>
-      <div
-        class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-950/60 to-transparent"
-      ></div>
+<body>
+  <!-- header -->
+  <section class="relative w-full min-h-[420px] md:min-h-[540px] overflow-hidden">
+    <!-- Background -->
+    <img id="heroImage" src="" alt="Blog Banner" class="absolute inset-0 w-full h-full object-cover" />
 
-      <!-- Header -->
-      <div id="header" class="relative z-30"></div>
+    <!-- Overlays -->
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-900/40 to-transparent"></div>
+    <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-950/60 to-transparent"></div>
 
-      <!-- Content -->
-      <div
-        class="relative z-20 flex items-center justify-center text-center min-h-[420px] md:min-h-[540px]"
-      >
-        <div class="max-w-7xl mx-auto w-full px-6 lg:px-10 pt-28 md:pt-32">
-          <div class="max-w-3xl mx-auto">
-            <!-- Badge -->
-            <span
-              class="inline-block mb-5 px-4 py-2 rounded-full bg-[#d5e880]/15 border border-[#d5e880]/30 text-[#d5e880] text-xs sm:text-sm font-semibold tracking-[2px] uppercase plus-jakarta-sans"
-            >
-              Glacier Treks And Adventure
-            </span>
+    <!-- Header -->
+    <div id="header" class="relative z-30"></div>
 
-            <!-- Title -->
-            <h1
-              id="trekBannerHeading"
-              class="text-white text-xl md:text-3xl leading-tight gloock-regular mb-6"
-            ></h1>
+    <!-- Content -->
+    <div class="relative z-20 flex items-center justify-center text-center min-h-[420px] md:min-h-[540px]">
+      <div class="max-w-7xl mx-auto w-full px-6 lg:px-10 pt-28 md:pt-32">
+        <div class="max-w-3xl mx-auto">
+          <!-- Badge -->
+          <span
+            class="inline-block mb-5 px-4 py-2 rounded-full bg-[#d5e880]/15 border border-[#d5e880]/30 text-[#d5e880] text-xs sm:text-sm font-semibold tracking-[2px] uppercase plus-jakarta-sans">
+            Glacier Treks And Adventure
+          </span>
 
-            <!-- Description -->
-            <!-- <p
+          <!-- Title -->
+          <h1 id="trekBannerHeading" class="text-white text-xl md:text-3xl leading-tight gloock-regular mb-6"></h1>
+
+          <!-- Description -->
+          <!-- <p
                         class="text-white/85 text-base sm:text-lg md:text-xl leading-8 plus-jakarta-sans mb-8 max-w-2xl mx-auto">
                         Explore trekking stories, travel tips, destination guides, and adventure insights from Glacier
                         Treks And Adventure to help you plan your next unforgettable journey.
                     </p> -->
 
-            <!-- Breadcrumb -->
-            <div
+          <!-- Breadcrumb -->
+          <!-- <div
               class="flex flex-wrap justify-center items-center gap-3 text-white/90 plus-jakarta-sans text-sm sm:text-base"
             >
               <a
@@ -201,16 +179,16 @@
               >
               <span class="text-white/40">/</span>
               <span class="text-[#d5e880] font-medium">Trending in ladakh</span>
-            </div>
-          </div>
+            </div> -->
         </div>
       </div>
-    </section>
-    <!-- section -->
+    </div>
+  </section>
+  <!-- section -->
 
-    <section class="max-w-[85%] mx-auto mt-16">
-      <div class="relative group">
-        <!-- 
+  <section class="max-w-[85%] mx-auto mt-16">
+    <div class="relative group">
+      <!-- 
             <div id="ladakhSlider"
                 class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide rounded-[28px]">
 
@@ -225,8 +203,8 @@
 
             </div> -->
 
-        <!-- Overlay Content -->
-        <!-- <div class="absolute bottom-6 left-6 z-10 max-w-lg">
+      <!-- Overlay Content -->
+      <!-- <div class="absolute bottom-6 left-6 z-10 max-w-lg">
                 <h3 id="bannerHeading" class="gloock-regular text-white text-3xl md:text-4xl mb-3">
                     
                 </h3>
@@ -236,82 +214,48 @@
                     Explore Trek →
                 </a>
             </div>  -->
+    </div>
+  </section>
+
+  <section class="max-w-[85%] mx-auto mt-8 mb-16">
+    <div class="flex flex-col gap-8">
+      <h3 id="bannerHeading" class="gloock-regular text-black text-3xl md:text-4xl mb-3"></h3>
+      <!-- Intro -->
+      <div id="pagecontent" class="flex flex-col gap-4"></div>
+    </div>
+  </section>
+
+  <!-- popular packages -->
+  <section class="max-w-[85%] mx-auto my-16">
+    <div class="flex items-center justify-between gap-4 mb-8">
+      <h2 class="gloock-regular text-3xl md:text-5xl text-slate-900 text-center">
+        Popular Ladakh Trekking Packages
+      </h2>
+
+      <div class="hidden md:flex items-center gap-3">
+        <button id="ladakhPrev" type="button"
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-[#e7eddc] bg-white text-slate-700 shadow-sm transition-all duration-300 hover:bg-[#d5e880] hover:text-slate-900 hover:border-[#d5e880]">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <button id="ladakhNext" type="button"
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-[#e7eddc] bg-white text-slate-700 shadow-sm transition-all duration-300 hover:bg-[#d5e880] hover:text-slate-900 hover:border-[#d5e880]">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
       </div>
-    </section>
+    </div>
 
-    <section class="max-w-[85%] mx-auto mt-8 mb-16">
-      <div class="flex flex-col gap-8">
-        <h3
-          id="bannerHeading"
-          class="gloock-regular text-black text-3xl md:text-4xl mb-3"
-        ></h3>
-        <!-- Intro -->
-        <div id="pagecontent" class="flex flex-col gap-4"></div>
-      </div>
-    </section>
-
-    <!-- popular packages -->
-    <section class="max-w-[85%] mx-auto my-16">
-      <div class="flex items-center justify-between gap-4 mb-8">
-        <h2
-          class="gloock-regular text-3xl md:text-5xl text-slate-900 text-center"
-        >
-          Popular Ladakh Trekking Packages
-        </h2>
-
-        <div class="hidden md:flex items-center gap-3">
-          <button
-            id="ladakhPrev"
-            type="button"
-            class="flex h-11 w-11 items-center justify-center rounded-full border border-[#e7eddc] bg-white text-slate-700 shadow-sm transition-all duration-300 hover:bg-[#d5e880] hover:text-slate-900 hover:border-[#d5e880]"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2.2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-
-          <button
-            id="ladakhNext"
-            type="button"
-            class="flex h-11 w-11 items-center justify-center rounded-full border border-[#e7eddc] bg-white text-slate-700 shadow-sm transition-all duration-300 hover:bg-[#d5e880] hover:text-slate-900 hover:border-[#d5e880]"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2.2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <div class="relative overflow-hidden">
-        <div id="ladakhViewport" class="overflow-hidden">
-          <div
-            id="ladakhTrack"
-            class="flex gap-6 transition-transform duration-500 ease-in-out"
-          >
-            <!-- Card 1 -->
-            <!-- <div
+    <div class="relative overflow-hidden">
+      <div id="ladakhViewport" class="overflow-hidden">
+        <div id="ladakhTrack" class="flex gap-6 transition-transform duration-500 ease-in-out">
+          <!-- Card 1 -->
+          <!-- <div
                         class="ladakh-card group w-[88%] sm:w-[70%] md:w-[48%] lg:w-[31.8%] xl:w-[23.5%] shrink-0 h-full flex flex-col overflow-hidden rounded-[24px] border border-[#e7eddc] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
                         <div class="relative overflow-hidden">
                             <img src="./images/affortable package.webp" alt="Nun Kun Ladakh" loading="lazy"
@@ -386,219 +330,200 @@
                             </div>
                         </div>
                     </div> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- faq -->
+  <section class="py-20 bg-[#f8faf7]">
+    <div class="max-w-[85%] mx-auto flex flex-col gap-10">
+      <!-- Heading -->
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="uppercase tracking-[3px] text-sm font-semibold text-[#8aa43c] plus-jakarta-sans">
+          FAQ
+        </span>
+        <h4 class="gloock-regular text-3xl md:text-5xl text-slate-900 mt-2">
+          Frequently Asked Questions
+        </h4>
+      </div>
+
+      <!-- FAQ List -->
+      <div id="faqContainer" class="flex flex-col gap-4">
+        <!-- FAQ Item -->
+        <div class="faq-item bg-white border border-slate-200 rounded-2xl p-5 pl-6 transition-all duration-300">
+          <button class="faq-question flex justify-between items-center w-full text-left">
+            <h3 class="text-lg md:text-xl font-semibold text-slate-900 plus-jakarta-sans">
+              Why choose Glacier Treks & Adventure for trekking?
+            </h3>
+
+            <span
+              class="faq-icon-wrapper w-10 h-10 rounded-full bg-[#f1f6d8] flex items-center justify-center shrink-0 transition-all duration-300">
+              <svg class="faq-icon w-5 h-5 text-[#8aa43c] transition-transform duration-300" fill="none"
+                stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" />
+              </svg>
+            </span>
+          </button>
+
+          <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+            <p class="pt-4 text-slate-600 leading-7 plus-jakarta-sans">
+              Glacier Treks & Adventure is a reputed trekking company offering
+              the best destinations, experienced guides, confirmed bookings,
+              and complete support for your trekking journey.
+            </p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- faq -->
-    <section class="py-20 bg-[#f8faf7]">
-      <div class="max-w-[85%] mx-auto flex flex-col gap-10">
-        <!-- Heading -->
-        <div class="text-center max-w-2xl mx-auto">
-          <span
-            class="uppercase tracking-[3px] text-sm font-semibold text-[#8aa43c] plus-jakarta-sans"
-          >
-            FAQ
-          </span>
-          <h4 class="gloock-regular text-3xl md:text-5xl text-slate-900 mt-2">
-            Frequently Asked Questions
-          </h4>
-        </div>
+  <!-- popular script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const viewport = document.getElementById("ladakhViewport");
+      const track = document.getElementById("ladakhTrack");
+      const cards = Array.from(document.querySelectorAll(".ladakh-card"));
+      const prevBtn = document.getElementById("ladakhPrev");
+      const nextBtn = document.getElementById("ladakhNext");
 
-        <!-- FAQ List -->
-        <div id="faqContainer" class="flex flex-col gap-4">
-          <!-- FAQ Item -->
-          <div
-            class="faq-item bg-white border border-slate-200 rounded-2xl p-5 pl-6 transition-all duration-300"
-          >
-            <button
-              class="faq-question flex justify-between items-center w-full text-left"
-            >
-              <h3
-                class="text-lg md:text-xl font-semibold text-slate-900 plus-jakarta-sans"
-              >
-                Why choose Glacier Treks & Adventure for trekking?
-              </h3>
+      if (!viewport || !track || !cards.length || !prevBtn || !nextBtn)
+        return;
 
-              <span
-                class="faq-icon-wrapper w-10 h-10 rounded-full bg-[#f1f6d8] flex items-center justify-center shrink-0 transition-all duration-300"
-              >
-                <svg
-                  class="faq-icon w-5 h-5 text-[#8aa43c] transition-transform duration-300"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.4"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M12 5v14M5 12h14"
-                  />
-                </svg>
-              </span>
-            </button>
+      let currentIndex = 0;
 
-            <div
-              class="faq-answer max-h-0 overflow-hidden transition-all duration-300"
-            >
-              <p class="pt-4 text-slate-600 leading-7 plus-jakarta-sans">
-                Glacier Treks & Adventure is a reputed trekking company offering
-                the best destinations, experienced guides, confirmed bookings,
-                and complete support for your trekking journey.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      function getGap() {
+        const styles = window.getComputedStyle(track);
+        return parseFloat(styles.columnGap || styles.gap || 24) || 24;
+      }
 
-    <!-- popular script -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const viewport = document.getElementById("ladakhViewport");
-        const track = document.getElementById("ladakhTrack");
-        const cards = Array.from(document.querySelectorAll(".ladakh-card"));
-        const prevBtn = document.getElementById("ladakhPrev");
-        const nextBtn = document.getElementById("ladakhNext");
+      function getVisibleCount() {
+        const width = window.innerWidth;
+        if (width >= 1280) return 4; // xl
+        if (width >= 1024) return 3; // lg
+        if (width >= 768) return 2; // md
+        if (width >= 640) return 1; // sm
+        return 1;
+      }
 
-        if (!viewport || !track || !cards.length || !prevBtn || !nextBtn)
-          return;
+      function getStepWidth() {
+        const cardWidth = cards[0].getBoundingClientRect().width;
+        return cardWidth + getGap();
+      }
 
-        let currentIndex = 0;
+      function getMaxIndex() {
+        return Math.max(0, cards.length - getVisibleCount());
+      }
 
-        function getGap() {
-          const styles = window.getComputedStyle(track);
-          return parseFloat(styles.columnGap || styles.gap || 24) || 24;
+      function updateSlider() {
+        const translateX = currentIndex * getStepWidth();
+        track.style.transform = `translateX(-${translateX}px)`;
+
+        if (currentIndex <= 0) {
+          prevBtn.setAttribute("disabled", "true");
+          prevBtn.classList.add("opacity-40", "cursor-not-allowed");
+        } else {
+          prevBtn.removeAttribute("disabled");
+          prevBtn.classList.remove("opacity-40", "cursor-not-allowed");
         }
 
-        function getVisibleCount() {
-          const width = window.innerWidth;
-          if (width >= 1280) return 4; // xl
-          if (width >= 1024) return 3; // lg
-          if (width >= 768) return 2; // md
-          if (width >= 640) return 1; // sm
-          return 1;
+        if (currentIndex >= getMaxIndex()) {
+          nextBtn.setAttribute("disabled", "true");
+          nextBtn.classList.add("opacity-40", "cursor-not-allowed");
+        } else {
+          nextBtn.removeAttribute("disabled");
+          nextBtn.classList.remove("opacity-40", "cursor-not-allowed");
         }
+      }
 
-        function getStepWidth() {
-          const cardWidth = cards[0].getBoundingClientRect().width;
-          return cardWidth + getGap();
-        }
-
-        function getMaxIndex() {
-          return Math.max(0, cards.length - getVisibleCount());
-        }
-
-        function updateSlider() {
-          const translateX = currentIndex * getStepWidth();
-          track.style.transform = `translateX(-${translateX}px)`;
-
-          if (currentIndex <= 0) {
-            prevBtn.setAttribute("disabled", "true");
-            prevBtn.classList.add("opacity-40", "cursor-not-allowed");
-          } else {
-            prevBtn.removeAttribute("disabled");
-            prevBtn.classList.remove("opacity-40", "cursor-not-allowed");
-          }
-
-          if (currentIndex >= getMaxIndex()) {
-            nextBtn.setAttribute("disabled", "true");
-            nextBtn.classList.add("opacity-40", "cursor-not-allowed");
-          } else {
-            nextBtn.removeAttribute("disabled");
-            nextBtn.classList.remove("opacity-40", "cursor-not-allowed");
-          }
-        }
-
-        nextBtn.addEventListener("click", function () {
-          if (currentIndex < getMaxIndex()) {
-            currentIndex += 1;
-            updateSlider();
-          }
-        });
-
-        prevBtn.addEventListener("click", function () {
-          if (currentIndex > 0) {
-            currentIndex -= 1;
-            updateSlider();
-          }
-        });
-
-        window.addEventListener("resize", function () {
-          currentIndex = Math.min(currentIndex, getMaxIndex());
+      nextBtn.addEventListener("click", function () {
+        if (currentIndex < getMaxIndex()) {
+          currentIndex += 1;
           updateSlider();
-        });
+        }
+      });
 
+      prevBtn.addEventListener("click", function () {
+        if (currentIndex > 0) {
+          currentIndex -= 1;
+          updateSlider();
+        }
+      });
+
+      window.addEventListener("resize", function () {
+        currentIndex = Math.min(currentIndex, getMaxIndex());
         updateSlider();
       });
-    </script>
 
-    <!-- footer section -->
-    <div id="footer"></div>
-    <script src="config/apiConfig.js"></script>
-    <script src="controllers/function.js"></script>
-    <script src="controllers/trek.js"></script>
-    <script src="controllers/users.js"></script>
-    <script src="includes/common.js"></script>
-    <script src="controllers/footerdetails.js"></script>
+      updateSlider();
+    });
+  </script>
 
-    <!-- Slider Script -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const slider = document.getElementById("ladakhSlider");
-        const prev = document.getElementById("ladakhPrev");
-        const next = document.getElementById("ladakhNext");
+  <!-- footer section -->
+  <div id="footer"></div>
+  <script src="config/apiConfig.js"></script>
+  <script src="controllers/function.js"></script>
+  <script src="controllers/trek.js"></script>
+  <script src="controllers/users.js"></script>
+  <script src="includes/common.js"></script>
+  <script src="controllers/footerdetails.js"></script>
 
-        function getWidth() {
-          return slider.offsetWidth;
-        }
+  <!-- Slider Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const slider = document.getElementById("ladakhSlider");
+      const prev = document.getElementById("ladakhPrev");
+      const next = document.getElementById("ladakhNext");
 
-        prev.addEventListener("click", () => {
-          slider.scrollBy({
-            left: -getWidth(),
-            behavior: "smooth",
-          });
+      function getWidth() {
+        return slider.offsetWidth;
+      }
+
+      prev.addEventListener("click", () => {
+        slider.scrollBy({
+          left: -getWidth(),
+          behavior: "smooth",
         });
+      });
 
-        next.addEventListener("click", () => {
-          slider.scrollBy({
-            left: getWidth(),
-            behavior: "smooth",
-          });
+      next.addEventListener("click", () => {
+        slider.scrollBy({
+          left: getWidth(),
+          behavior: "smooth",
         });
+      });
 
-        initFaqToggle(); //function are defined in function.js
-      });
-    </script>
+      initFaqToggle(); //function are defined in function.js
+    });
+  </script>
 
-    <!-- script added heere -->
-    <script>
-      // Load Includes
-      // loadInclude('includes/header.html', 'header');
-      loadInclude("includes/header.html", "header").then(() => {
-        toggleBtn(); //function are defined in common.js
-        loadCategory(); //function are defined in common.js
-        loadAboutusToggle(); //function are defined in common.js
-        upcomingdropdown(); //function are defined in common.js
-        document
-          .getElementById("logout-btn")
-          .addEventListener("click", function () {
-            logout();
-          });
-      });
-      loadInclude("includes/footer.html", "footer").then(() => {
-        loadSettings(); // function are defined in footerdetails.js
-      });
-      document.addEventListener("DOMContentLoaded", function () {
-        const params = new URLSearchParams(window.location.search);
-        const slug = params.get("slug");
-        if (slug) {
-          loadTrekDetails(slug);
-          // loadPackageDetails(slug);
-        }
-      });
-    </script>
-  </body>
+  <!-- script added heere -->
+  <script>
+    // Load Includes
+    // loadInclude('includes/header.html', 'header');
+    loadInclude("includes/header.html", "header").then(() => {
+      toggleBtn(); //function are defined in common.js
+      loadCategory(); //function are defined in common.js
+      loadAboutusToggle(); //function are defined in common.js
+      upcomingdropdown(); //function are defined in common.js
+      document
+        .getElementById("logout-btn")
+        .addEventListener("click", function () {
+          logout();
+        });
+    });
+    loadInclude("includes/footer.html", "footer").then(() => {
+      loadSettings(); // function are defined in footerdetails.js
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get("slug");
+      if (slug) {
+        loadTrekDetails(slug);
+        // loadPackageDetails(slug);
+      }
+    });
+  </script>
+</body>
+
 </html>

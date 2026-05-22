@@ -276,7 +276,7 @@ async function loadPackageDetails(slug) {
   <!-- Button -->
  <a href="/booking.html?price=${price}&id=${packageData._id}&name=${packageData.packageName}" class="pt-2 md:pt-3 block text-center">
   <button
-    class="inline-flex items-center justify-center px-8 py-4 md:px-10 md:py-5 rounded-2xl bg-slate-900 text-[#d5e880] text-lg md:text-xl font-bold shadow-xl hover:bg-[#d5e880] hover:text-slate-900 transition-all duration-300 uppercase tracking-widest plus-jakarta-sans">
+    class="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-3 rounded-2xl bg-slate-900 text-[#d5e880] text-lg md:text-xl font-bold shadow-xl hover:bg-[#d5e880] hover:text-slate-900 transition-all duration-300 uppercase tracking-widest plus-jakarta-sans">
     Book Now
   </button>
 </a>

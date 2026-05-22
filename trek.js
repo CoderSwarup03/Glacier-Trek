@@ -232,7 +232,7 @@ async function loadTrekDetails(slug) {
 
                         <span
                             class="faq-icon-wrapper w-10 h-10 rounded-full bg-[#f1f6d8] flex items-center justify-center shrink-0 transition-all duration-300">
-                            <svg class="faq-icon w-5 h-5 text-[#8aa43c] transition-transform duration-300" fill="none"
+                            <svg class="faq-icon w-[15px] h-[15px] text-[#8aa43c] transition-transform duration-300" fill="none"
                                 stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" />
                             </svg>
