@@ -48,85 +48,118 @@
     #inclusionsPera li,
     #inclusionsPera span,
     #inclusionsPera a,
-    #inclusionsPera div {
+    #inclusionsPera div,
+    #itineraryContent p,
+    #itineraryContent li,
+    #itineraryContent span,
+    #itineraryContent a,
+    #itineraryContent div,
+    #dayTabsWrapper p,
+    #dayTabsWrapper li,
+    #dayTabsWrapper span,
+    #dayTabsWrapper a,
+    #dayTabsWrapper div,
+    #faq-content p,
+    #faq-content li,
+    #faq-content span,
+    #faq-content a,
+    #faq-content div {
       font-family: "Plus Jakarta Sans", sans-serif !important;
       font-size: 16px !important;
       font-weight: 400 !important;
       line-height: 1.8 !important;
       color: #475569 !important;
-      margin-bottom: 16px !important;
+      margin-bottom: 10px !important;
     }
 
     /* h1 */
     #pagecontent h1,
     #overview h1,
     #inclusionsContent h1,
-    #inclusionsPera h1 {
+    #inclusionsPera h1,
+    #itineraryContent h1,
+    #dayTabsWrapper h1,
+    #faq-content h1 {
       font-family: "Gloock", serif !important;
       font-size: 36px !important;
       font-weight: 700 !important;
       line-height: 1.2 !important;
       color: #0f172a !important;
-      margin: 20px 0 14px !important;
+      margin: 10px 0 14px !important;
     }
 
     /* h2 */
     #pagecontent h2,
     #overview h2,
     #inclusionsContent h2,
-    #inclusionsPera h2 {
+    #inclusionsPera h2,
+    #itineraryContent h2,
+    #dayTabsWrapper h2,
+    #faq-content h2 {
       font-family: "Gloock", serif !important;
       font-size: 24px !important;
       font-weight: 700 !important;
       line-height: 1.3 !important;
       color: #0f172a !important;
-      margin: 18px 0 12px !important;
+      margin: 10px 0 12px !important;
     }
 
     /* h3 */
     #pagecontent h3,
     #overview h3,
     #inclusionsContent h3,
-    #inclusionsPera h3 {
+    #inclusionsPera h3,
+    #itineraryContent h3,
+    #dayTabsWrapper h3,
+    #faq-content h3 {
       font-family: "Gloock", serif !important;
       font-size: 18.72px !important;
       font-weight: 600 !important;
       line-height: 1.4 !important;
       color: #0f172a !important;
-      margin: 16px 0 10px !important;
+      margin: 10px 0 10px !important;
     }
 
     /* h4 */
     #pagecontent h4,
     #overview h4,
     #inclusionsContent h4,
-    #inclusionsPera h4 {
+    #inclusionsPera h4,
+    #itineraryContent h4,
+    #dayTabsWrapper h4,
+    #faq-content h4 {
       font-family: "Gloock", serif !important;
       font-size: 16px !important;
       font-weight: 600 !important;
       line-height: 1.4 !important;
       color: #0f172a !important;
-      margin: 14px 0 8px !important;
+      margin: 10px 0 8px !important;
     }
 
     /* h5 */
     #pagecontent h5,
     #overview h5,
     #inclusionsContent h5,
-    #inclusionsPera h5 {
+    #inclusionsPera h5,
+    #itineraryContent h5,
+    #dayTabsWrapper h5,
+    #faq-content h5 {
       font-family: "Gloock", serif !important;
       font-size: 13.28px !important;
       font-weight: 500 !important;
       line-height: 1.5 !important;
       color: #0f172a !important;
-      margin: 12px 0 6px !important;
+      margin: 10px 0 6px !important;
     }
 
     /* h6 */
     #pagecontent h6,
     #overview h6,
     #inclusionsContent h6,
-    #inclusionsPera h6 {
+    #inclusionsPera h6,
+    #itineraryContent h6,
+    #dayTabsWrapper h6,
+    #faq-content h6 {
       font-family: "Gloock", serif !important;
       font-size: 10.72px !important;
       font-weight: 500 !important;
@@ -377,8 +410,8 @@
   </section>
 
   <!-- over view -->
-  <section class="w-full mx-2">
-    <div class="bg-white p-0 md:p-8 md:p-10 h-full">
+  <section class="w-full px-3">
+    <div class="max-w-[95%] md:max-w-[85%] mx-auto bg-white p-0 md:p-8 md:p-10 h-full">
       <h2 class="gloock-regular text-2xl md:text-4xl mb-6 text-center md:text-left text-[#243146]">
         Overview
       </h2>
@@ -403,14 +436,14 @@
   <!-- itaniry section section -->
   <section class="w-full">
     <!-- Tab section (Itinerary, Inclusions, FAQ) -->
-    <div class="mt-12 bg-white border border-[#e5e6dc] rounded-none p-0 md:p-6">
+    <div class="max-w-[95%] md:max-w-[85%] mx-auto mt-12 bg-white rounded-none p-0 md:p-6">
       <div class="flex flex-col gap-5">
         <!-- Itinerary -->
         <div class="overflow-hidden border-b border-[#d5e880]">
           <button type="button"
             class="accordion-btn flex w-full items-center justify-between px-3 md:px-6 py-2 text-left">
             <div>
-              <h4 class="text-[20px] md:text-[22px] font-[600] text-[#243146] plus-jakarta-sans">
+              <h4 class="text-[20px] md:text-[22px] font-[600] text-[#243146] gloock-regular">
                 Itinerary
               </h4>
               <p class="mt-1 text-sm text-slate-500 plus-jakarta-sans">
@@ -423,7 +456,7 @@
             </svg>
           </button>
 
-          <div class="accordion-content hidden border-t border-[#e5e6dc] bg-white px-1 md:px-6 py-2">
+          <div class="accordion-content hidden border-t border-[#e5e6dc] bg-white px-0 md:px-6 py-2">
             <!-- Days Nav -->
             <div id="dayTabsWrapper" class="flex gap-3 overflow-x-auto whitespace-nowrap pb-4 scrollbar-hide"></div>
 
@@ -449,7 +482,7 @@
 
   <!-- FAQ -->
   <section class="w-full py-2 md:py-5 bg-[#f8faf7]">
-    <div class="flex flex-col gap-10">
+    <div class="max-w-[95%] md:max-w-[85%] mx-auto flex flex-col gap-10">
       <!-- Heading -->
       <div class="flex flex-col justify-start items-start px-3 px-6">
         <!-- <span class="uppercase tracking-[3px] text-sm font-semibold text-[#8aa43c] plus-jakarta-sans">
@@ -464,7 +497,7 @@
       <div id="faq-item" class="flex flex-col gap-4" id="faq-container">
         <!-- Dynamic FAQs will come here -->
         <div class="faq-item bg-white p-5 pl-6 transition-all duration-300">
-          <button class="faq-question flex justify-between items-center w-full text-left">
+          <!-- <div class="faq-question flex justify-between items-center w-full text-left">
             <h3 class="text-lg md:text-xl font-semibold text-slate-900">
               Heading
             </h3>
@@ -475,164 +508,15 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" />
               </svg>
             </span>
-          </button>
+          </div>
 
           <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
             <p class="pt-4 text-slate-600">Answer</p>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Gallery Section -->
-  <!-- <section class="py-4 bg-white">
-      <div class="max-w-[85%] mx-auto">
-        <div
-          class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12"
-        >
-          <div>
-            <p class="text-slate-500 plus-jakarta-sans text-lg">
-              Capturing moments from the roof of the world
-            </p>
-            <h2 class="gloock-regular text-4xl text-slate-900 mt-2">
-              Trek Photo Gallery
-            </h2>
-          </div> -->
-  <!-- Gallery Tabs -->
-  <!-- <div id="photoTypeTab" class="flex flex-wrap gap-3">
-            <button
-              class="active-season-tab bg-slate-900 text-[#d5e880] season-tab px-8 py-3 rounded-xl font-bold border-2 border-slate-900 transition-all duration-300"
-              data-season="summer"
-            >
-              Summer
-            </button>
-            <button
-              class="season-tab px-8 py-3 rounded-xl bg-white text-slate-600 font-bold border-2 border-[#e5e6dc] hover:border-slate-900 hover:text-slate-900 transition-all duration-300"
-              data-season="autumn"
-            >
-              Autumn
-            </button>
-          </div> -->
-  <!-- </div> -->
-
-  <!-- Mosaic Grid Layout -->
-  <!-- <div
-          id="galleryGrid"
-          class="grid grid-cols-1 md:grid-cols-12 gap-5 min-h-[600px]"
-        >
-          <div
-            class="gallery-item summer col-span-1 md:col-span-12 grid grid-cols-1 md:grid-cols-12 gap-5 transition-all duration-500"
-          >
-            <div
-              class="md:col-span-7 group relative overflow-hidden rounded-[32px] h-[400px] md:h-[600px]"
-            >
-              <img
-                src="./images/blog-photo.webp"
-                alt="Summer Expedition"
-                class="w-full h-full object-cover transition duration-700 group-hover:scale-105"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-8"
-              >
-                <span class="text-white font-bold text-xl"
-                  >Base Camp Morning - Summer</span
-                >
-              </div>
-            </div>
-            <div class="md:col-span-5 grid grid-cols-2 gap-5">
-              <div
-                class="col-span-2 group relative overflow-hidden rounded-[32px] h-[290px]"
-              >
-                <img
-                  src="./images/blog1.webp"
-                  alt="Summer View"
-                  class="w-full h-full object-cover transition duration-700 group-hover:scale-105"
-                />
-              </div>
-              <div
-                class="group relative overflow-hidden rounded-[32px] h-[290px]"
-              >
-                <img
-                  src="./images/blog2.webp"
-                  alt="Summer Trail"
-                  class="w-full h-full object-cover transition duration-700 group-hover:scale-105"
-                />
-              </div>
-              <div
-                class="group relative overflow-hidden rounded-[32px] h-[290px]"
-              >
-                <img
-                  src="./images/blog-photo.webp"
-                  alt="More Photos"
-                  class="w-full h-full object-cover transition duration-700 group-hover:scale-105"
-                />
-                <div
-                  class="absolute inset-0 bg-black/50 flex items-center justify-center cursor-pointer"
-                >
-                  <span class="text-white text-2xl font-bold">+ 16 Photos</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="gallery-item autumn hidden col-span-1 md:col-span-12 grid grid-cols-1 md:grid-cols-12 gap-5 transition-all duration-500"
-          >
-            <div
-              class="md:col-span-7 group relative overflow-hidden rounded-[32px] h-[400px] md:h-[600px]"
-            >
-              <img
-                src="./images/blog2.webp"
-                alt="Autumn Expedition"
-                class="w-full h-full object-cover transition duration-700 group-hover:scale-105"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-8"
-              >
-                <span class="text-white font-bold text-xl"
-                  >Golden Valleys - Autumn</span
-                >
-              </div>
-            </div>
-            <div class="md:col-span-5 grid grid-cols-2 gap-5">
-              <div
-                class="col-span-2 group relative overflow-hidden rounded-[32px] h-[290px]"
-              >
-                <img
-                  src="./images/blog-photo.webp"
-                  alt="Autumn View"
-                  class="w-full h-full object-cover transition duration-700 group-hover:scale-105"
-                />
-              </div>
-              <div
-                class="group relative overflow-hidden rounded-[32px] h-[290px]"
-              >
-                <img
-                  src="./images/blog1.webp"
-                  alt="Autumn Trail"
-                  class="w-full h-full object-cover transition duration-700 group-hover:scale-105"
-                />
-              </div>
-              <div
-                class="group relative overflow-hidden rounded-[32px] h-[290px]"
-              >
-                <img
-                  src="./images/blog2.webp"
-                  alt="More Photos"
-                  class="w-full h-full object-cover transition duration-700 group-hover:scale-105"
-                />
-                <div
-                  class="absolute inset-0 bg-black/50 flex items-center justify-center cursor-pointer"
-                >
-                  <span class="text-white text-2xl font-bold">+ 24 Photos</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-  <!-- </div>
-    </section> -->
 
   <!--  new gallary2 -->
   <section class="py-14 bg-white">
@@ -760,7 +644,7 @@
         <div id="similarTrack"
           class="flex gap-4 md:gap-6 will-change-transform lg:transition-transform lg:duration-500 lg:ease-out">
           <!-- Card 1 -->
-          <article
+          <!-- <article
             class="similar-card group w-full sm:w-[82%] md:w-[48%] lg:w-[31.8%] xl:w-[23.5%] shrink-0 overflow-hidden rounded-[24px] bg-white shadow-sm ring-1 ring-[#e9efdf] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl snap-start">
             <div class="relative h-[220px] md:h-[240px] overflow-hidden">
               <img src="./images/blog-photo.webp" alt="Goenchala Trek"
@@ -813,231 +697,9 @@
                 View Trek Details
               </a>
             </div>
-          </article>
+          </article> -->
 
-          <!-- Card 2 -->
-          <article
-            class="similar-card group w-full sm:w-[82%] md:w-[48%] lg:w-[31.8%] xl:w-[23.5%] shrink-0 overflow-hidden rounded-[24px] bg-white shadow-sm ring-1 ring-[#e9efdf] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl snap-start">
-            <div class="relative h-[220px] md:h-[240px] overflow-hidden">
-              <img src="./images/blog1.webp" alt="Sandakphu Trek"
-                class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent"></div>
-
-              <span
-                class="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 shadow-sm plus-jakarta-sans">
-                Popular
-              </span>
-            </div>
-
-            <div class="p-5 md:p-6">
-              <div class="flex items-start justify-between gap-3 mb-4">
-                <h4 class="text-xl font-bold text-slate-900 plus-jakarta-sans">
-                  Sandakphu Trek
-                </h4>
-
-                <span
-                  class="inline-flex shrink-0 items-center gap-1 rounded-full bg-[#d5e880]/35 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 plus-jakarta-sans">
-                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" />
-                  </svg>
-                  Bengal
-                </span>
-              </div>
-
-              <div class="grid grid-cols-2 gap-2 mb-5">
-                <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
-                  <p class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
-                    Duration
-                  </p>
-                  <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">
-                    6 Days
-                  </p>
-                </div>
-                <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
-                  <p class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
-                    Grade
-                  </p>
-                  <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">
-                    Moderate
-                  </p>
-                </div>
-              </div>
-
-              <a href="#"
-                class="inline-flex w-full items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.6px] text-slate-800 shadow-sm transition-all duration-300 hover:border-[#d5e880] hover:bg-[#d5e880] hover:text-slate-900 plus-jakarta-sans">
-                View Trek Details
-              </a>
-            </div>
-          </article>
-
-          <!-- Card 3 -->
-          <article
-            class="similar-card group w-full sm:w-[82%] md:w-[48%] lg:w-[31.8%] xl:w-[23.5%] shrink-0 overflow-hidden rounded-[24px] bg-white shadow-sm ring-1 ring-[#e9efdf] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl snap-start">
-            <div class="relative h-[220px] md:h-[240px] overflow-hidden">
-              <img src="./images/blog2.webp" alt="Dzongri Trek"
-                class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent"></div>
-
-              <span
-                class="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 shadow-sm plus-jakarta-sans">
-                Trending
-              </span>
-            </div>
-
-            <div class="p-5 md:p-6">
-              <div class="flex items-start justify-between gap-3 mb-4">
-                <h4 class="text-xl font-bold text-slate-900 plus-jakarta-sans">
-                  Dzongri Trek
-                </h4>
-
-                <span
-                  class="inline-flex shrink-0 items-center gap-1 rounded-full bg-[#d5e880]/35 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 plus-jakarta-sans">
-                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" />
-                  </svg>
-                  Sikkim
-                </span>
-              </div>
-
-              <div class="grid grid-cols-2 gap-2 mb-5">
-                <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
-                  <p class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
-                    Duration
-                  </p>
-                  <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">
-                    8 Days
-                  </p>
-                </div>
-                <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
-                  <p class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
-                    Grade
-                  </p>
-                  <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">
-                    Moderate
-                  </p>
-                </div>
-              </div>
-
-              <a href="#"
-                class="inline-flex w-full items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.6px] text-slate-800 shadow-sm transition-all duration-300 hover:border-[#d5e880] hover:bg-[#d5e880] hover:text-slate-900 plus-jakarta-sans">
-                View Trek Details
-              </a>
-            </div>
-          </article>
-
-          <!-- Card 4 -->
-          <article
-            class="similar-card group w-full sm:w-[82%] md:w-[48%] lg:w-[31.8%] xl:w-[23.5%] shrink-0 overflow-hidden rounded-[24px] bg-white shadow-sm ring-1 ring-[#e9efdf] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl snap-start">
-            <div class="relative h-[220px] md:h-[240px] overflow-hidden">
-              <img src="./images/blog-photo.webp" alt="Singalila Ridge"
-                class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent"></div>
-
-              <span
-                class="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 shadow-sm plus-jakarta-sans">
-                Best Seller
-              </span>
-            </div>
-
-            <div class="p-5 md:p-6">
-              <div class="flex items-start justify-between gap-3 mb-4">
-                <h4 class="text-xl font-bold text-slate-900 plus-jakarta-sans">
-                  Singalila Ridge
-                </h4>
-
-                <span
-                  class="inline-flex shrink-0 items-center gap-1 rounded-full bg-[#d5e880]/35 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 plus-jakarta-sans">
-                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" />
-                  </svg>
-                  Nepal
-                </span>
-              </div>
-
-              <div class="grid grid-cols-2 gap-2 mb-5">
-                <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
-                  <p class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
-                    Duration
-                  </p>
-                  <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">
-                    10 Days
-                  </p>
-                </div>
-                <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
-                  <p class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
-                    Grade
-                  </p>
-                  <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">
-                    Moderate
-                  </p>
-                </div>
-              </div>
-
-              <a href="#"
-                class="inline-flex w-full items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.6px] text-slate-800 shadow-sm transition-all duration-300 hover:border-[#d5e880] hover:bg-[#d5e880] hover:text-slate-900 plus-jakarta-sans">
-                View Trek Details
-              </a>
-            </div>
-          </article>
-
-          <!--card 5 -->
-          <article
-            class="similar-card group w-full sm:w-[82%] md:w-[48%] lg:w-[31.8%] xl:w-[23.5%] shrink-0 overflow-hidden rounded-[24px] bg-white shadow-sm ring-1 ring-[#e9efdf] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl snap-start">
-            <div class="relative h-[220px] md:h-[240px] overflow-hidden">
-              <img src="./images/blog-photo.webp" alt="Singalila Ridge"
-                class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent"></div>
-
-              <span
-                class="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 shadow-sm plus-jakarta-sans">
-                Best Seller
-              </span>
-            </div>
-
-            <div class="p-5 md:p-6">
-              <div class="flex items-start justify-between gap-3 mb-4">
-                <h4 class="text-xl font-bold text-slate-900 plus-jakarta-sans">
-                  Singalila Ridge
-                </h4>
-
-                <span
-                  class="inline-flex shrink-0 items-center gap-1 rounded-full bg-[#d5e880]/35 px-3 py-1 text-[10px] font-bold uppercase tracking-[1px] text-slate-800 plus-jakarta-sans">
-                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" />
-                  </svg>
-                  Nepal
-                </span>
-              </div>
-
-              <div class="grid grid-cols-2 gap-2 mb-5">
-                <div class="rounded-2xl bg-[#f8faf7] px-3 py-3">
-                  <p class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
-                    Duration
-                  </p>
-                  <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">
-                    10 Days
-                  </p>
-                </div>
-                <div class="rounded-2xl bg-[#f8faf7] px-3 py-3 flex items-center">
-                  <p class="text-[10px] font-semibold uppercase tracking-[1.1px] text-slate-500 plus-jakarta-sans">
-                    Grade
-                  </p>
-                  <p class="text-sm font-semibold text-slate-800 plus-jakarta-sans mt-1">
-                    Moderate
-                  </p>
-                </div>
-              </div>
-
-              <a href="#"
-                class="inline-flex w-full items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.6px] text-slate-800 shadow-sm transition-all duration-300 hover:border-[#d5e880] hover:bg-[#d5e880] hover:text-slate-900 plus-jakarta-sans">
-                View Trek Details
-              </a>
-            </div>
-          </article>
+         
         </div>
       </div>
     </div>

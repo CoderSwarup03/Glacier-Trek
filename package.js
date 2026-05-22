@@ -274,12 +274,12 @@ async function loadPackageDetails(slug) {
   </div>
 
   <!-- Button -->
-  <a href="/booking.html?price=${price}&id=${packageData._id}&name=${packageData.packageName}" class="pt-2 md:pt-3 block">
-    <button
-      class="w-full py-4 md:py-5 rounded-2xl bg-slate-900 text-[#d5e880] text-lg md:text-xl font-bold shadow-xl hover:bg-[#d5e880] hover:text-slate-900 transition-all duration-300 uppercase tracking-widest plus-jakarta-sans">
-      Book Now
-    </button>
-  </a>
+ <a href="/booking.html?price=${price}&id=${packageData._id}&name=${packageData.packageName}" class="pt-2 md:pt-3 block text-center">
+  <button
+    class="inline-flex items-center justify-center px-8 py-4 md:px-10 md:py-5 rounded-2xl bg-slate-900 text-[#d5e880] text-lg md:text-xl font-bold shadow-xl hover:bg-[#d5e880] hover:text-slate-900 transition-all duration-300 uppercase tracking-widest plus-jakarta-sans">
+    Book Now
+  </button>
+</a>
 
   <!-- Footer -->
   <div class="text-center space-y-2">
@@ -326,9 +326,8 @@ async function loadPackageDetails(slug) {
     <button
       onclick="showGallery('${tab}')"
       id="${tab}Btn"
-      class="gallery-tab ${
-        index === 0 ? "active-tab" : ""
-      } px-6 py-3 rounded-full whitespace-nowrap"
+      class="gallery-tab ${index === 0 ? "active-tab" : ""
+        } px-6 py-3 rounded-full whitespace-nowrap"
     >
       ${tab.charAt(0).toUpperCase() + tab.slice(1)}
     </button>
@@ -446,7 +445,7 @@ async function loadPackageDetails(slug) {
 
     const availableDateData =
       packageData.departureDates &&
-      packageData.departureDates.length > 0
+        packageData.departureDates.length > 0
         ? packageData.departureDates
         : [];
 
@@ -713,13 +712,11 @@ async function loadPackageDetails(slug) {
           ${fromDate} - ${toDate}
         </span>
 
-        <a href="/booking.html?price=${
-          packageData.offerPriceINR
+        <a href="/booking.html?price=${packageData.offerPriceINR
             ? packageData.offerPriceINR
             : packageData.originalPriceINR
-        }&id=${packageData._id}&name=${
-          packageData.packageName
-        }&fromDate=${date.fromDate}&toDate=${date.toDate}">
+          }&id=${packageData._id}&name=${packageData.packageName
+          }&fromDate=${date.fromDate}&toDate=${date.toDate}">
 
           <span class="text-[10px] font-bold text-white bg-[#12b85c] px-2 py-0.5 rounded uppercase plus-jakarta-sans">
             AVBL
@@ -768,11 +765,10 @@ async function loadPackageDetails(slug) {
       dayTabsWrapper.innerHTML += `
                               <button type="button"
                             class="day-tab px-4 py-2 md:px-6 md:py-3 rounded-full text-[#243146] font-bold border 
-                            ${
-                              index === 0
-                                ? "active-day-tab bg-[#cddc67] border-[#cddc67]"
-                                : "bg-white border-[#e5e6dc]"
-                            }
+                            ${index === 0
+          ? "active-day-tab bg-[#cddc67] border-[#cddc67]"
+          : "bg-white border-[#e5e6dc]"
+        }
                             "
                             data-day="day${index + 1}">
                             ${day.heading}
@@ -785,8 +781,8 @@ async function loadPackageDetails(slug) {
       itineraryContent.innerHTML += `
       
                             <div id="day${index + 1}" class="${index !== 0 ? "day-content hidden" : "day-content"} p-1 md:p-6">
-                                <h5 class="text-xl font-bold text-[#243146] mb-3"> ${day.subheading}</h5>
-                                <p class="text-slate-600 leading-8">${day.content ? day.content : "N/A"}</p>
+                                <div class="text-xl font-bold text-[#243146] mb-3"> ${day.subheading}</div>
+                                <div class="text-slate-600 leading-8">${day.content ? day.content : "N/A"}</div>
                             </div>
                             
                        
@@ -796,10 +792,9 @@ async function loadPackageDetails(slug) {
       inclusionsData.forEach((inclusion) => {
         inclusionsContent.innerHTML += ` <div class="overflow-hidden border-b border-[#d5e880]">
                     <button type="button"
-                        class="inclusions-btn flex w-full items-center justify-between px-3 md:px-6 py-2 text-left">
-                        <div>
+                        class="inclusions-btn bg-[#f8fafc] flex w-full items-center justify-between px-3 md:px-6 py-2 text-left">
+                        <div >
                             <h4 class="text-[20px] md:text-[22px] font-[600] text-[#243146] plus-jakarta-sans">${inclusion.name}</h4>
-                           
                         </div>
                         <svg class="accordion-icon h-7 w-7 text-slate-700 transition-transform duration-300" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.3">
@@ -809,7 +804,6 @@ async function loadPackageDetails(slug) {
                     <div class="accordion-content hidden px-3 md:px-6 py-3">
     <div id="inclusionsPera" class="w-full">
         <p  class="flex items-start gap-3 plus-jakarta-sans text-slate-700 leading-7">
-           
             ${inclusion.content ? inclusion.content : "N/A"}
         </p>
     </div>
@@ -823,7 +817,7 @@ async function loadPackageDetails(slug) {
       faqItem.innerHTML += `
         <div  class="faq-item bg-white border border-slate-200 rounded-2xl p-5 pl-6 transition-all duration-300">
                     
-         <button class="faq-question flex justify-between items-center w-full text-left">
+         <div id="faq-content" class="faq-question flex justify-between items-center w-full text-left">
                         <h3 class="text-lg md:text-xl font-semibold text-slate-900">
                            ${faq.heading}
                         </h3>
@@ -834,7 +828,7 @@ async function loadPackageDetails(slug) {
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/>
                             </svg>
                         </span>
-                    </button>
+                    </div>
 
                     <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
                         <p class="pt-4 text-slate-600">
@@ -1041,7 +1035,7 @@ async function loadPackageDetails(slug) {
 
 
 
-       
+
 //       `;
 //         // render
 //       } catch (err) {
@@ -1070,7 +1064,9 @@ async function loadSimilarPackages() {
       try {
         const params = new URLSearchParams(window.location.search);
         const currentPackageSlug = params.get("slug");
-        if (packageData.slug === currentPackageSlug) return; // skip current package
+        if (packageData.slug === currentPackageSlug || packageData._id === currentPackageSlug) {
+          return; // skip current package
+        }
         // console.log("test", pkg);
         // if (pkg === currentPackageId) continue;
 
@@ -1140,17 +1136,6 @@ async function loadSimilarPackages() {
                             </a>
                         </div>
                     </article>
-
-
-
-
-
-
-
-
-
-
-       
       `;
         // render
       } catch (err) {
